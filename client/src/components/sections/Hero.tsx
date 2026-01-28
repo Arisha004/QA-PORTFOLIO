@@ -2,8 +2,12 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, ShieldCheck, Gauge, Trophy, MousePointer2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useState } from "react";
+import { BugHunterGame } from "@/components/ui/BugHunterGame";
 
 export function Hero() {
+  const [isGameOpen, setIsGameOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background">
       {/* Background Decor */}
@@ -48,7 +52,10 @@ export function Hero() {
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Button>
                 </Link>
-                <div className="flex items-center gap-4 px-6 h-14 border-l border-border group cursor-help">
+                <button 
+                  onClick={() => setIsGameOpen(true)}
+                  className="flex items-center gap-4 px-6 h-14 border-l border-border group cursor-pointer hover:bg-secondary transition-colors"
+                >
                   <motion.div 
                     animate={{ rotate: [0, 10, -10, 0] }}
                     transition={{ repeat: Infinity, duration: 2 }}
@@ -56,8 +63,8 @@ export function Hero() {
                   >
                     <MousePointer2 className="h-5 w-5" />
                   </motion.div>
-                  <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Interactivity Active</span>
-                </div>
+                  <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors">Start Bug Hunt</span>
+                </button>
               </div>
             </motion.div>
           </div>
@@ -152,6 +159,8 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      <BugHunterGame isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
     </section>
   );
 }
