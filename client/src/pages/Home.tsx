@@ -7,6 +7,7 @@ import { PerformanceObservatory } from "@/components/sections/PerformanceObserva
 import { WorkflowTimeline } from "@/components/sections/WorkflowTimeline";
 import { VideoSection } from "@/components/sections/VideoSection";
 import { CaseStudies } from "@/components/sections/CaseStudies";
+import { ChatBot } from "@/components/ui/ChatBot";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <VideoSection />
       </main>
       <Footer />
+      <ChatBot />
     </div>
   );
 }

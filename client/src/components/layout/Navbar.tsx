@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Terminal, LayoutGrid } from "lucide-react";
+import { Terminal, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -13,10 +13,10 @@ export function Navbar() {
   }, []);
 
   const navItems = [
-    { name: "ENGINE", href: "#ai-tools" },
-    { name: "LAB", href: "#playground" },
-    { name: "HISTORY", href: "#workflow" },
-    { name: "AUDIT", href: "#performance" },
+    { name: "MY JOURNEY", href: "#workflow" },
+    { name: "TESTING TOOLS", href: "#ai-tools" },
+    { name: "PRACTICE LAB", href: "#playground" },
+    { name: "REPORTS", href: "#performance" },
   ];
 
   return (
@@ -24,7 +24,7 @@ export function Navbar() {
       <div className="container-custom flex items-center justify-between">
         <Link href="/">
           <a className="flex items-center gap-3 group">
-            <div className="p-2 bg-primary text-primary-foreground group-hover:scale-110 transition-transform">
+            <div className="p-2 bg-primary text-primary-foreground group-hover:rotate-12 transition-transform">
               <Terminal className="h-5 w-5" />
             </div>
             <span className="font-display font-black text-xl tracking-tighter uppercase">Arisha<span className="text-muted-foreground">.QA</span></span>
@@ -44,12 +44,12 @@ export function Navbar() {
             ))}
           </div>
           <Button variant="outline" className="rounded-none border-primary font-black text-[10px] tracking-widest uppercase hover:bg-primary hover:text-primary-foreground px-8">
-            Get Protocol
+            CONTACT ME
           </Button>
         </div>
 
         <button className="md:hidden p-2">
-          <LayoutGrid className="h-6 w-6" />
+          <Menu className="h-6 w-6" />
         </button>
       </div>
     </nav>

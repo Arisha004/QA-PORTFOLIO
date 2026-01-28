@@ -1,35 +1,34 @@
 import { motion } from "framer-motion";
-import { Bot, Zap, Code2, Search, ArrowUpRight } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Terminal, Search, Bug, Code2, ArrowUpRight } from "lucide-react";
 
 const tools = [
   {
-    name: "AI Test Synthesis",
-    role: "Heuristic Generation",
-    icon: Bot,
-    description: "Utilizing Large Language Models to architect complex test scenarios that human analysis might overlook.",
-    metric: "4x Faster"
+    name: "Writing Test Cases",
+    role: "Planning",
+    icon: Terminal,
+    description: "I'm learning how to break down features into simple steps to check every possible way a user might interact with them.",
+    label: "Step 01"
   },
   {
-    name: "Self-Healing Scripts",
-    role: "Dynamic Selectors",
-    icon: Zap,
-    description: "Intelligent automation frameworks that adapt to DOM mutations in real-time, reducing maintenance overhead.",
-    metric: "90% Stability"
+    name: "Bug Documentation",
+    role: "Reporting",
+    icon: Bug,
+    description: "I practice documenting bugs so clearly that any developer can understand exactly what happened and how to fix it.",
+    label: "Step 02"
   },
   {
-    name: "Python Automation",
-    role: "Framework Design",
+    name: "Python Basics",
+    role: "Automation",
     icon: Code2,
-    description: "Bespoke Selenium and Playwright architectures built for scalability and CI/CD integration.",
-    metric: "0% False Positives"
+    description: "I'm starting my journey into automation by learning the fundamentals of Python to write my first test scripts.",
+    label: "Step 03"
   },
   {
-    name: "Continuous Audit",
-    role: "Accessibility & Perf",
+    name: "Manual Analysis",
+    role: "Quality",
     icon: Search,
-    description: "Automated regression suites monitoring Web Vitals and WCAG compliance at every commit.",
-    metric: "Grade A"
+    description: "I use simple browser tools to check for accessibility and performance errors as part of my manual routine.",
+    label: "Step 04"
   }
 ];
 
@@ -39,11 +38,15 @@ export function AITools() {
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-32">
+            <div className="inline-flex items-center gap-2 mb-6">
+              <div className="h-px w-8 bg-primary"></div>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Skills in Progress</span>
+            </div>
             <h2 className="text-4xl md:text-5xl font-display font-black tracking-tighter mb-6 uppercase">
-              THE <span className="text-muted-foreground">ENGINE</span>
+              What I'm <br /> <span className="text-muted-foreground/40">Learning</span>
             </h2>
             <p className="text-lg text-muted-foreground font-medium leading-relaxed mb-8">
-              My methodology integrates artificial intelligence into the core of the quality lifecycle, transforming testing from a bottleneck into a competitive advantage.
+              My learning journey is focused on the core pillars of quality assurance. I'm building a strong foundation in manual testing before scaling up to complex systems.
             </p>
             <div className="h-1 w-20 bg-primary" />
           </div>
@@ -55,22 +58,22 @@ export function AITools() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="bg-card p-10 group relative hover:bg-secondary transition-colors"
+                className="bg-card p-12 group relative hover:bg-secondary transition-colors"
               >
-                <div className="flex justify-between items-start mb-12">
+                <div className="flex justify-between items-start mb-16">
                   <div className="p-4 bg-secondary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                     <tool.icon className="h-6 w-6" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">{tool.metric}</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">{tool.label}</span>
                 </div>
                 
                 <h3 className="text-2xl font-display font-bold mb-2 uppercase tracking-tight">{tool.name}</h3>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-6">{tool.role}</p>
+                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-8">{tool.role}</p>
                 <p className="text-sm text-muted-foreground leading-relaxed font-medium mb-8">
                   {tool.description}
                 </p>
 
-                <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-12 right-12 opacity-0 group-hover:opacity-100 transition-opacity">
                   <ArrowUpRight className="h-5 w-5 text-primary" />
                 </div>
               </motion.div>
