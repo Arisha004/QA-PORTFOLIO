@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Terminal, Search, Bug, Code2, ArrowUpRight } from "lucide-react";
+import { Link } from "wouter";
 
 const tools = [
   {
@@ -7,28 +8,32 @@ const tools = [
     role: "Planning",
     icon: Terminal,
     description: "I'm learning how to break down features into simple steps to check every possible way a user might interact with them.",
-    label: "Step 01"
+    label: "Step 01",
+    id: "test-cases"
   },
   {
     name: "Bug Documentation",
     role: "Reporting",
     icon: Bug,
     description: "I practice documenting bugs so clearly that any developer can understand exactly what happened and how to fix it.",
-    label: "Step 02"
+    label: "Step 02",
+    id: "bug-reporting"
   },
   {
     name: "Python Basics",
     role: "Automation",
     icon: Code2,
     description: "I'm starting my journey into automation by learning the fundamentals of Python to write my first test scripts.",
-    label: "Step 03"
+    label: "Step 03",
+    id: "python"
   },
   {
     name: "Manual Analysis",
     role: "Quality",
     icon: Search,
     description: "I use simple browser tools to check for accessibility and performance errors as part of my manual routine.",
-    label: "Step 04"
+    label: "Step 04",
+    id: "manual-analysis"
   }
 ];
 
@@ -60,22 +65,26 @@ export function AITools() {
                 viewport={{ once: true }}
                 className="bg-card p-12 group relative hover:bg-secondary transition-colors"
               >
-                <div className="flex justify-between items-start mb-16">
-                  <div className="p-4 bg-secondary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <tool.icon className="h-6 w-6" strokeWidth={1.5} />
-                  </div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">{tool.label}</span>
-                </div>
-                
-                <h3 className="text-2xl font-display font-bold mb-2 uppercase tracking-tight">{tool.name}</h3>
-                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-8">{tool.role}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed font-medium mb-8">
-                  {tool.description}
-                </p>
+                <Link href={`/learning/${tool.id}`}>
+                  <a className="block h-full">
+                    <div className="flex justify-between items-start mb-16">
+                      <div className="p-4 bg-secondary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                        <tool.icon className="h-6 w-6" strokeWidth={1.5} />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">{tool.label}</span>
+                    </div>
+                    
+                    <h3 className="text-2xl font-display font-bold mb-2 uppercase tracking-tight">{tool.name}</h3>
+                    <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-8">{tool.role}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed font-medium mb-8">
+                      {tool.description}
+                    </p>
 
-                <div className="absolute bottom-12 right-12 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowUpRight className="h-5 w-5 text-primary" />
-                </div>
+                    <div className="absolute bottom-12 right-12 opacity-40 group-hover:opacity-100 transition-opacity">
+                      <ArrowUpRight className="h-5 w-5 text-primary" />
+                    </div>
+                  </a>
+                </Link>
               </motion.div>
             ))}
           </div>

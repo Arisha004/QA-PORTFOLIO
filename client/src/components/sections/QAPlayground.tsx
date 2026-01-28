@@ -15,6 +15,15 @@ export function QAPlayground() {
   const [logs, setLogs] = useState<string[]>(["Waiting for test..."]);
 
   const runManualTest = (type: "pass" | "fail") => {
+    if (!email.trim() || !password.trim()) {
+      toast({
+        title: "Input Required",
+        description: "Please fill in both email and password to run the manual test.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setTestStatus("running");
     setLogs(["Starting manual verification...", "Checking input fields..."]);
     
