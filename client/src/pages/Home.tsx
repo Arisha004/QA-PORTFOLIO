@@ -7,6 +7,7 @@ import { PerformanceObservatory } from "@/components/sections/PerformanceObserva
 import { WorkflowTimeline } from "@/components/sections/WorkflowTimeline";
 import { VideoSection } from "@/components/sections/VideoSection";
 import { CaseStudies } from "@/components/sections/CaseStudies";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { ChatBot } from "@/components/ui/ChatBot";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <AITools />
         <QAPlayground />
         <CaseStudies />
+        <ExperienceSection />
         <WorkflowTimeline />
         <PerformanceObservatory />
         <VideoSection />
