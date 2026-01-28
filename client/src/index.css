@@ -36,64 +36,94 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
 }
 
-/* DARK MODE DEFAULT (Futuristic Tech Theme) */
+/* PROFESSIONAL LIGHT THEME */
 :root {
-  --background: 222 47% 11%; /* Deep Navy */
-  --foreground: 210 40% 98%;
+  --background: 210 20% 98%;
+  --foreground: 222 47% 11%;
 
-  --card: 222 47% 14%;
-  --card-foreground: 210 40% 98%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
 
-  --popover: 222 47% 11%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
 
-  --primary: 180 100% 50%; /* Cyan Neon */
-  --primary-foreground: 222 47% 11%;
+  --primary: 222 47% 11%;
+  --primary-foreground: 210 40% 98%;
 
-  --secondary: 265 80% 60%; /* Vivid Purple for AI */
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
 
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
 
-  --accent: 180 100% 50%;
+  --accent: 210 40% 96%;
   --accent-foreground: 222 47% 11%;
 
-  --destructive: 0 100% 60%; /* Neon Red */
+  --destructive: 0 84% 60%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 217 33% 20%;
-  --input: 217 33% 20%;
-  --ring: 180 100% 50%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 222 47% 11%;
 
   --radius: 0.5rem;
 }
 
+.dark {
+  --background: 222 47% 4%;
+  --foreground: 210 40% 98%;
+
+  --card: 222 47% 6%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222 47% 4%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 210 40% 98%;
+  --primary-foreground: 222 47% 11%;
+
+  --secondary: 217 33% 12%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217 33% 12%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 217 33% 12%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217 33% 15%;
+  --input: 217 33% 15%;
+  --ring: 212 26% 83%;
+}
+
 body {
-  @apply bg-background text-foreground font-sans antialiased selection:bg-primary/20 selection:text-primary;
+  @apply bg-background text-foreground font-sans antialiased selection:bg-primary/10 selection:text-primary;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-display tracking-tight;
+  @apply font-display tracking-tight font-bold;
 }
 
-code, pre {
-  @apply font-mono;
+.section-padding {
+  @apply py-24 md:py-32;
 }
 
-.glass-panel {
-  @apply bg-background/60 backdrop-blur-md border border-border/50 shadow-xl;
+.container-custom {
+  @apply max-w-7xl mx-auto px-6 lg:px-12;
 }
 
-.neon-border {
-  @apply border border-primary/50 shadow-[0_0_15px_rgba(0,255,255,0.1)];
+.glass-card {
+  @apply bg-white/40 dark:bg-black/40 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-sm;
 }
 
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary;
+.text-reveal {
+  @apply overflow-hidden;
 }
