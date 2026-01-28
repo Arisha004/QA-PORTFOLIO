@@ -1,0 +1,203 @@
+I want you to build the world’s most unique, interactive, production-quality QA Engineer portfolio for Arisha Mumtaz, specifically showcasing manual QA, AI in testing, performance testing, and automation learning, in a way that no other QA portfolio exists like this. This portfolio must set her apart globally.
+
+The portfolio should feel like a QA testing environment + AI-powered workflow, not just a static portfolio.
+
+🌟 KEY DIFFERENTIATORS (MAKE THEM PROMINENT)
+
+Interactive QA Playground
+
+Users can simulate testing of UI components:
+
+Buttons, forms, themes, responsiveness
+
+Shows PASS/FAIL feedback in real time
+
+Micro-interactions emulate real QA tools
+
+AI Testing Showcase
+
+Highlight tools Arisha uses:
+
+ChatGPT / Gemini → AI test case generation
+
+Test Craft / Test Rigor → AI test automation
+
+Interactive cards showing tool, purpose, and demo workflow
+
+Manual QA Expertise
+
+Tools like Test Case Studio (bug recording)
+
+Workflow visualization (diagram / timeline):
+
+Understand requirements
+
+Write test cases
+
+Execute tests
+
+Record bugs
+
+Measure performance
+
+Generate AI-assisted tests
+
+Report results
+
+Performance & Accessibility Observatory
+
+Real-time display of:
+
+Lighthouse scores (Perf, Accessibility, Best Practices, SEO)
+
+Web Vitals (FCP, LCP, CLS)
+
+Accessibility check summary
+
+Include screenshots or graphs of test runs
+
+Video Workflow Explanation
+
+Embed a 1–2 minute video Arisha will make
+
+Section title: “My QA Workflow Explained”
+
+Explain how she uses manual + AI tools interactively
+
+Placeholder should be elegant with “Video coming soon…”
+
+Automation Learning Journey
+
+Show Arisha’s Selenium in Python journey
+
+Interactive timeline showing growth:
+
+Manual → AI → Automation
+
+Include “practice exercises” or sample automation logs
+
+Case Studies with AI & Manual Storytelling
+
+For 2–3 sample projects:
+
+What was tested manually
+
+How AI helped generate test cases
+
+Performance & accessibility gains
+
+Bugs found / prevented
+
+Screenshots, metrics, or logs
+
+Tools & Extensions Hub
+
+Categorized cards:
+
+Manual QA Tools: Test Case Studio, Lighthouse
+
+AI Tools: ChatGPT, Gemini, Test Craft, Test Rigor
+
+Automation Tools: Selenium
+
+Each card shows: tool, category, purpose, example workflow
+
+🏗️ TECH STACK REQUIREMENTS
+
+Framework: Next.js or SvelteKit
+
+Styling: Tailwind CSS, clean, modern, futuristic
+
+Testing: Cypress / Playwright
+
+Accessibility Audit: axe-core
+
+Performance Checks: Lighthouse CI
+
+Deployment: Vercel-ready
+
+🔒 QUALITY REQUIREMENTS (STRICT!)
+
+Bug-free: no console errors, warnings, broken links, layout shifts
+
+Fully responsive: mobile, tablet, desktop
+
+Keyboard navigable
+
+Screen-reader compatible
+
+WCAG 2.2 AA compliant
+
+Performance target: Lighthouse ≥ 90
+
+Semantic HTML
+
+Lazy-loaded images
+
+Micro-interactions smooth and intentional
+
+🧪 TESTING & VALIDATION AUTOMATION
+
+Include automated tests for:
+
+Navigation & responsiveness
+
+Dark/Light mode
+
+Forms & interactive components
+
+Accessibility (using axe-core)
+
+No console errors on any page
+
+Organize test files:
+
+/tests/functional
+/tests/accessibility
+/tests/performance
+/tests/regression
+
+
+Include README explaining:
+
+Setup instructions
+
+How to run tests
+
+Accessibility & performance notes
+
+QA workflow logic
+
+🎨 DESIGN & INTERACTIVITY
+
+Portfolio must feel like a QA dashboard + AI lab
+
+Futuristic yet minimal UI
+
+Micro-interactions for:
+
+Hover on tools
+
+Workflow diagrams
+
+Video section interactions
+
+Metrics reveal on scroll
+
+Timeline / flow visualization is interactive, not static
+
+📦 OUTPUT EXPECTED
+
+Full working, production-ready website
+
+Automated test suite
+
+README with instructions, QA notes, and deployment steps
+
+Performance & accessibility evidence
+
+Placeholder for 1–2 minute workflow video
+
+This portfolio must look, feel, and function like a real QA-tested product, demonstrating manual, AI, and automation QA skills, and must immediately communicate world-class QA proficiency.
+
+Prompt End
