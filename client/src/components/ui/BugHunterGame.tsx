@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Target, Trophy, Play, ShieldAlert, Cpu, Layers, Activity } from "lucide-react";
+import { X, Trophy, Play, ShieldAlert, Cpu, Layers, Activity, Search, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type ComponentState = {
@@ -15,7 +15,8 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
   const [gameState, setGameState] = useState<"idle" | "playing" | "finished">("idle");
   const [components, setComponents] = useState<ComponentState[]>([]);
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(20);
+  const [timeLeft, setTimeLeft] = useState(25);
+  const [difficulty, setDifficulty] = useState(1);
 
   const spawnComponent = useCallback(() => {
     const id = Date.now() + Math.random();
@@ -29,15 +30,19 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
     };
     setComponents((prev) => [...prev, newComp]);
 
+    const lifespan = Math.max(1200, 2500 - (difficulty * 200));
     setTimeout(() => {
       setComponents((prev) => prev.filter((c) => c.id !== id));
-    }, 2500);
-  }, []);
+    }, lifespan);
+  }, [difficulty]);
 
   useEffect(() => {
     let timer: any;
     if (gameState === "playing" && timeLeft > 0) {
-      timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+        if (timeLeft % 5 === 0) setDifficulty(d => d + 0.5);
+      }, 1000);
     } else if (timeLeft === 0) {
       setGameState("finished");
     }
@@ -47,10 +52,11 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
   useEffect(() => {
     let spawnInterval: any;
     if (gameState === "playing") {
-      spawnInterval = setInterval(spawnComponent, 600);
+      const rate = Math.max(300, 800 - (difficulty * 100));
+      spawnInterval = setInterval(spawnComponent, rate);
     }
     return () => clearInterval(spawnInterval);
-  }, [gameState, spawnComponent]);
+  }, [gameState, spawnComponent, difficulty]);
 
   const handleResolution = (id: number, type: string) => {
     const points = type === "vulnerability" ? 50 : type === "optimization" ? 30 : 20;
@@ -60,7 +66,8 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
 
   const startGame = () => {
     setScore(0);
-    setTimeLeft(20);
+    setTimeLeft(25);
+    setDifficulty(1);
     setComponents([]);
     setGameState("playing");
   };
@@ -74,42 +81,41 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-background/98 backdrop-blur-2xl"
         >
-          <div className="relative w-full max-w-4xl bg-card border border-border shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden rounded-none">
+          <div className="relative w-full max-w-5xl bg-card border border-border shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden rounded-none">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-primary/20" />
             
-            <div className="p-8 border-b border-border flex justify-between items-center bg-secondary/30">
+            <div className="p-6 md:p-8 border-b border-border flex justify-between items-center bg-secondary/30">
               <div>
                 <div className="flex items-center gap-3 mb-1">
-                  <Activity className="h-5 w-5 text-primary" strokeWidth={2.5} />
-                  <span className="font-display font-black text-2xl tracking-tighter uppercase">Protocol Validator</span>
+                  <ShieldCheck className="h-6 w-6 text-primary" strokeWidth={2.5} />
+                  <span className="font-display font-black text-xl md:text-2xl tracking-tighter uppercase">Infrastructure Validator</span>
                 </div>
-                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground">Arisha's Quality Interface</div>
+                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground">Arisha's Precision Suite</div>
               </div>
               <Button variant="ghost" size="icon" onClick={onClose} className="rounded-none h-12 w-12 hover:bg-primary hover:text-primary-foreground">
                 <X className="h-6 w-6" />
               </Button>
             </div>
 
-            <div className="relative aspect-[21/9] bg-secondary/10 overflow-hidden group">
-              {/* Grid Overlay */}
+            <div className="relative aspect-[16/9] md:aspect-[21/9] bg-secondary/10 overflow-hidden group">
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5" />
               <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.1 }} />
 
               {gameState === "idle" && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/40">
                   <motion.div
-                    animate={{ scale: [1, 1.05, 1], opacity: [0.5, 1, 0.5] }}
-                    transition={{ repeat: Infinity, duration: 4 }}
+                    animate={{ scale: [1, 1.05, 1], rotate: [0, 5, -5, 0] }}
+                    transition={{ repeat: Infinity, duration: 6 }}
                     className="mb-8"
                   >
-                    <Cpu className="h-20 w-20 text-primary opacity-20" strokeWidth={1} />
+                    <Cpu className="h-24 w-24 text-primary opacity-20" strokeWidth={1} />
                   </motion.div>
-                  <h3 className="text-4xl font-display font-black uppercase tracking-tighter mb-4">Validate the System</h3>
-                  <p className="text-muted-foreground text-sm mb-10 max-w-md font-medium leading-relaxed">
-                    Identify and resolve system anomalies. Prioritize high-threat vulnerabilities to maximize infrastructure integrity.
+                  <h3 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter mb-4">Validate System Integrity</h3>
+                  <p className="text-muted-foreground text-base mb-10 max-w-lg font-medium leading-relaxed">
+                    Identify and resolve system anomalies in real-time. High-threat vulnerabilities require immediate intervention.
                   </p>
-                  <Button onClick={startGame} className="rounded-none px-12 h-16 font-black tracking-[0.2em] uppercase bg-primary text-primary-foreground hover:scale-105 transition-transform">
-                    <Play className="mr-3 h-5 w-5 fill-current" /> Initialize Test
+                  <Button onClick={startGame} className="rounded-none px-12 h-16 font-black tracking-[0.2em] uppercase bg-primary text-primary-foreground hover:scale-105 transition-transform shadow-lg shadow-primary/20">
+                    <Play className="mr-3 h-5 w-5 fill-current" /> Initialize Protocol
                   </Button>
                 </div>
               )}
@@ -118,11 +124,11 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                 <>
                   <div className="absolute top-8 left-8 flex gap-16 z-20">
                     <div className="space-y-1">
-                      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Integrity Score</div>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Integrity Index</div>
                       <div className="text-4xl font-display font-black tracking-tighter text-primary">{score.toString().padStart(4, '0')}</div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Time Remaining</div>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">System Clock</div>
                       <div className="text-4xl font-display font-black tracking-tighter">{timeLeft}s</div>
                     </div>
                   </div>
@@ -139,14 +145,14 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                         style={{ left: `${comp.x}%`, top: `${comp.y}%` }}
                       >
                         <div className="relative">
-                          <div className={`p-4 border-2 transition-all duration-300 group-hover/item:scale-110 ${
-                            comp.type === "vulnerability" ? "border-red-500 bg-red-500/10" :
-                            comp.type === "optimization" ? "border-primary bg-primary/10" :
+                          <div className={`p-5 border-2 transition-all duration-300 group-hover/item:scale-110 shadow-lg ${
+                            comp.type === "vulnerability" ? "border-red-500 bg-red-500/10 shadow-red-500/20" :
+                            comp.type === "optimization" ? "border-primary bg-primary/10 shadow-primary/20" :
                             "border-white/20 bg-white/5"
                           }`}>
-                            {comp.type === "vulnerability" ? <ShieldAlert className="h-8 w-8 text-red-500" /> :
-                             comp.type === "optimization" ? <Layers className="h-8 w-8 text-primary" /> :
-                             <Target className="h-8 w-8 text-muted-foreground" />}
+                            {comp.type === "vulnerability" ? <ShieldAlert className="h-10 w-10 text-red-500" /> :
+                             comp.type === "optimization" ? <Layers className="h-10 w-10 text-primary" /> :
+                             <Search className="h-10 w-10 text-muted-foreground" />}
                           </div>
                           <div className="absolute -top-3 -right-3 px-2 py-0.5 bg-background border border-border text-[8px] font-black uppercase tracking-widest">
                             {comp.type}
@@ -159,31 +165,35 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
               )}
 
               {gameState === "finished" && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/90 z-30">
-                  <Trophy className="h-20 w-20 text-primary mb-6" strokeWidth={1} />
-                  <h3 className="text-4xl font-display font-black uppercase tracking-tighter mb-2">Validation Complete</h3>
-                  <div className="text-7xl font-display font-black tracking-tighter text-primary mb-12">
-                    {score} <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-black">Points</span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/95 z-30">
+                  <Trophy className="h-24 w-24 text-primary mb-6" strokeWidth={1} />
+                  <h3 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter mb-2">Protocol Verified</h3>
+                  <div className="text-8xl font-display font-black tracking-tighter text-primary mb-12">
+                    {score} <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-black">Points</span>
                   </div>
-                  <Button onClick={startGame} className="rounded-none px-12 h-16 font-black tracking-[0.2em] uppercase">
-                    Re-Initialize Protocol
+                  <Button onClick={startGame} className="rounded-none px-12 h-16 font-black tracking-[0.2em] uppercase hover:bg-primary hover:text-primary-foreground transition-all">
+                    Initialize Next Scan
                   </Button>
                 </div>
               )}
             </div>
 
-            <div className="p-8 bg-secondary/20 flex justify-between items-center">
-              <div className="flex gap-12">
+            <div className="p-8 bg-secondary/20 flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="flex flex-wrap justify-center gap-12">
                 <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">Vulnerability (50pts)</span>
+                  <div className="w-3 h-3 bg-red-500 rounded-none shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Threat (50pts)</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-primary" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">Optimization (30pts)</span>
+                  <div className="w-3 h-3 bg-primary rounded-none shadow-[0_0_8px_rgba(0,255,255,0.5)]" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Optim (30pts)</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-muted-foreground rounded-none" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Anomaly (20pts)</span>
                 </div>
               </div>
-              <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 italic">System Stability Verified</div>
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 italic">System Health: 99.9% Reliable</div>
             </div>
           </div>
         </motion.div>

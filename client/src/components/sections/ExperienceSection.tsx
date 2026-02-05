@@ -22,6 +22,12 @@ const experience = [
 
 const courses = [
   {
+    title: "AI in Software Testing",
+    platform: "Certification",
+    status: "Completed",
+    id: "AI-777"
+  },
+  {
     title: "Software Testing Foundations",
     platform: "Coursera",
     status: "Completed",
