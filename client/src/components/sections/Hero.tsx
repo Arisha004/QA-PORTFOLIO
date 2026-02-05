@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, ShieldCheck, Gauge, Trophy, MousePointer2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck, Gauge, Trophy, MousePointer2, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import { BugHunterGame } from "@/components/ui/BugHunterGame";
 
 export function Hero() {
   const [isGameOpen, setIsGameOpen] = useState(false);
+  const RESUME_LINK = "https://drive.google.com/your-resume-link-here"; // Placeholder
 
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background">
@@ -45,16 +46,24 @@ export function Hero() {
                 Arisha Mumtaz. I am currently learning the art of software testing, exploring how to find bugs, and understanding the foundations of quality assurance.
               </p>
 
-              <div className="flex flex-wrap gap-6">
+              <div className="flex flex-wrap gap-6 items-center">
                 <Link href="/projects">
-                  <Button size="lg" className="rounded-none px-10 h-14 text-base font-bold tracking-tight bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button size="lg" className="rounded-none px-10 h-16 text-base font-bold tracking-tight bg-primary text-primary-foreground hover:bg-primary/90">
                     EXPLORE MY WORK
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Button>
                 </Link>
+                
+                <a href={RESUME_LINK} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="lg" className="rounded-none px-10 h-16 text-base font-bold tracking-tight border-primary text-primary hover:bg-primary/5">
+                    DOWNLOAD RESUME
+                    <Download className="ml-3 h-5 w-5" />
+                  </Button>
+                </a>
+
                 <button 
                   onClick={() => setIsGameOpen(true)}
-                  className="flex items-center gap-4 px-6 h-14 border-l border-border group cursor-pointer hover:bg-secondary transition-colors"
+                  className="flex items-center gap-4 px-8 h-16 border border-border group cursor-pointer hover:bg-secondary transition-all duration-300"
                 >
                   <motion.div 
                     animate={{ rotate: [0, 10, -10, 0] }}
@@ -63,7 +72,7 @@ export function Hero() {
                   >
                     <MousePointer2 className="h-5 w-5" />
                   </motion.div>
-                  <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors">Start Bug Hunt</span>
+                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] group-hover:text-primary transition-colors">Launch Protocol</span>
                 </button>
               </div>
             </motion.div>
