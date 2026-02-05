@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, User, Bot, Sparkles } from "lucide-react";
+import { Bot, X, Send, MessageSquare } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -30,7 +30,7 @@ export function ChatBot() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, isOpen]);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -59,10 +59,11 @@ export function ChatBot() {
 
   return (
     <>
-      <div className="fixed bottom-8 right-8 z-[100]">
+      <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[100]">
         <Button 
           onClick={() => setIsOpen(!isOpen)}
-          className="h-16 w-16 rounded-full shadow-2xl bg-primary text-primary-foreground hover:scale-105 transition-all duration-300 border border-white/10"
+          className="h-14 w-14 md:h-16 md:w-16 rounded-full shadow-2xl bg-primary text-primary-foreground hover:scale-105 transition-all duration-300 border border-white/10"
+          aria-label="Open chat"
         >
           {isOpen ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
         </Button>
@@ -74,24 +75,27 @@ export function ChatBot() {
             initial={{ opacity: 0, y: 40, scale: 0.9, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: 40, scale: 0.9, filter: "blur(10px)" }}
-            className="fixed bottom-28 right-8 w-[400px] h-[600px] glass-card z-[100] flex flex-col overflow-hidden rounded-2xl border border-white/20 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] bg-white/80 dark:bg-black/80 backdrop-blur-2xl"
+            className="fixed bottom-20 right-4 md:bottom-28 md:right-8 w-[calc(100vw-32px)] sm:w-[400px] h-[500px] md:h-[600px] glass-card z-[100] flex flex-col overflow-hidden rounded-2xl border border-white/20 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] bg-white/80 dark:bg-black/80 backdrop-blur-2xl"
           >
-            <div className="p-6 bg-primary text-primary-foreground flex justify-between items-center">
+            <div className="p-4 md:p-6 bg-primary text-primary-foreground flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/10 rounded-lg">
-                  <Bot className="h-5 w-5" />
+                  <Bot className="h-4 w-4 md:h-5 md:h-5" />
                 </div>
                 <div>
-                  <div className="font-display font-black text-xs uppercase tracking-[0.2em]">Liaison Bot</div>
-                  <div className="text-[10px] font-bold opacity-60 uppercase tracking-widest">Arisha's QA Assistant</div>
+                  <div className="font-display font-black text-[10px] md:text-xs uppercase tracking-[0.2em]">Liaison Bot</div>
+                  <div className="text-[8px] md:text-[10px] font-bold opacity-60 uppercase tracking-widest">Arisha's QA Assistant</div>
                 </div>
               </div>
+              <button onClick={() => setIsOpen(false)} className="text-white/60 hover:text-white">
+                <X className="h-5 w-5" />
+              </button>
             </div>
 
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
-                  <div className={`max-w-[85%] p-4 text-sm leading-relaxed ${
+                  <div className={`max-w-[85%] p-3 md:p-4 text-xs md:text-sm leading-relaxed ${
                     m.role === "user" 
                       ? "bg-primary text-primary-foreground rounded-2xl rounded-tr-none shadow-lg" 
                       : "bg-secondary/50 text-foreground rounded-2xl rounded-tl-none border border-border shadow-sm font-medium"
@@ -102,18 +106,18 @@ export function ChatBot() {
               ))}
             </div>
 
-            <div className="p-6 border-t border-border bg-white/40 dark:bg-black/40">
+            <div className="p-4 md:p-6 border-t border-border bg-white/40 dark:bg-black/40">
               <form 
                 onSubmit={(e) => { e.preventDefault(); handleSend(); }}
-                className="flex gap-3"
+                className="flex gap-2 md:gap-3"
               >
                 <Input 
-                  placeholder="Inquire about Arisha's QA trajectory..." 
+                  placeholder="Inquire about Arisha..." 
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  className="rounded-none h-12 border-border bg-background/50 focus:ring-1 focus:ring-primary"
+                  className="rounded-none h-10 md:h-12 border-border bg-background/50 focus:ring-1 focus:ring-primary text-xs"
                 />
-                <Button type="submit" size="icon" className="h-12 w-12 shrink-0 rounded-none bg-primary hover:bg-primary/90">
+                <Button type="submit" size="icon" className="h-10 w-10 md:h-12 md:w-12 shrink-0 rounded-none bg-primary hover:bg-primary/90">
                   <Send className="h-4 w-4" />
                 </Button>
               </form>
