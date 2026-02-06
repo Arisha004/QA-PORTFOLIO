@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Trophy, Play, ShieldAlert, Cpu, Layers, Activity, Search, ShieldCheck } from "lucide-react";
+import { X, Trophy, Play, ShieldAlert, Cpu, Layers, Activity, Search, ShieldCheck, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type ComponentState = {
@@ -15,22 +15,23 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
   const [gameState, setGameState] = useState<"idle" | "playing" | "finished">("idle");
   const [components, setComponents] = useState<ComponentState[]>([]);
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(25);
+  const [timeLeft, setTimeLeft] = useState(30);
   const [difficulty, setDifficulty] = useState(1);
+  const [history, setHistory] = useState<string[]>([]);
 
   const spawnComponent = useCallback(() => {
     const id = Date.now() + Math.random();
     const types: ("vulnerability" | "optimization" | "bug")[] = ["vulnerability", "optimization", "bug"];
     const newComp: ComponentState = {
       id,
-      x: Math.random() * 80 + 10,
+      x: Math.random() * 85 + 5,
       y: Math.random() * 80 + 10,
       type: types[Math.floor(Math.random() * types.length)],
       status: "active"
     };
     setComponents((prev) => [...prev, newComp]);
 
-    const lifespan = Math.max(1200, 2500 - (difficulty * 200));
+    const lifespan = Math.max(1000, 3000 - (difficulty * 300));
     setTimeout(() => {
       setComponents((prev) => prev.filter((c) => c.id !== id));
     }, lifespan);
@@ -43,7 +44,7 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
         setTimeLeft((prev) => prev - 1);
         if (timeLeft % 5 === 0) setDifficulty(d => d + 0.5);
       }, 1000);
-    } else if (timeLeft === 0) {
+    } else if (timeLeft === 0 && gameState === "playing") {
       setGameState("finished");
     }
     return () => clearInterval(timer);
@@ -52,7 +53,7 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
   useEffect(() => {
     let spawnInterval: any;
     if (gameState === "playing") {
-      const rate = Math.max(300, 800 - (difficulty * 100));
+      const rate = Math.max(400, 1000 - (difficulty * 150));
       spawnInterval = setInterval(spawnComponent, rate);
     }
     return () => clearInterval(spawnInterval);
@@ -62,13 +63,21 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
     const points = type === "vulnerability" ? 50 : type === "optimization" ? 30 : 20;
     setScore((prev) => prev + points);
     setComponents((prev) => prev.filter((c) => c.id !== id));
+    
+    const messages = {
+      vulnerability: "Critical security breach patched.",
+      optimization: "System performance enhanced.",
+      bug: "Functional defect eliminated."
+    };
+    setHistory(prev => [messages[type as keyof typeof messages], ...prev].slice(0, 5));
   };
 
   const startGame = () => {
     setScore(0);
-    setTimeLeft(25);
+    setTimeLeft(30);
     setDifficulty(1);
     setComponents([]);
+    setHistory([]);
     setGameState("playing");
   };
 
@@ -79,82 +88,113 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-background/98 backdrop-blur-2xl"
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-background/98 backdrop-blur-3xl"
         >
-          <div className="relative w-full max-w-5xl bg-card border border-border shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden rounded-none">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-primary/20" />
+          <div className="relative w-full max-w-6xl bg-card border border-white/10 shadow-[0_100px_200px_-50px_rgba(0,0,0,0.8)] overflow-hidden rounded-[3rem]">
+            <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
             
-            <div className="p-6 md:p-8 border-b border-border flex justify-between items-center bg-secondary/30">
-              <div>
-                <div className="flex items-center gap-3 mb-1">
-                  <ShieldCheck className="h-6 w-6 text-primary" strokeWidth={2.5} />
-                  <span className="font-display font-black text-xl md:text-2xl tracking-tighter uppercase">Infrastructure Validator</span>
+            <div className="p-8 md:p-12 border-b border-white/5 flex justify-between items-center bg-secondary/20 relative">
+              <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20">
+                    <ShieldCheck className="h-8 w-8 text-primary" strokeWidth={2.5} />
+                  </div>
+                  <div>
+                    <span className="font-display font-black text-2xl md:text-4xl tracking-tighter uppercase">Infrastructure Validator</span>
+                    <div className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mt-1 flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                      Protocol: Verifier_v5.4
+                    </div>
+                  </div>
                 </div>
-                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground">Arisha's Precision Suite</div>
               </div>
-              <Button variant="ghost" size="icon" onClick={onClose} className="rounded-none h-12 w-12 hover:bg-primary hover:text-primary-foreground">
-                <X className="h-6 w-6" />
+              <Button variant="ghost" size="icon" onClick={onClose} className="relative z-10 rounded-full h-16 w-16 hover:bg-white/5 hover:text-white transition-all">
+                <X className="h-8 w-8" />
               </Button>
             </div>
 
-            <div className="relative aspect-[16/9] md:aspect-[21/9] bg-secondary/10 overflow-hidden group">
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5" />
-              <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.1 }} />
+            <div className="relative aspect-[16/9] md:aspect-[21/9] bg-background/50 overflow-hidden group">
+              {/* Animated Scan Line */}
+              <motion.div 
+                animate={{ top: ['0%', '100%', '0%'] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                className="absolute left-0 right-0 h-[1px] bg-primary/20 z-10 pointer-events-none"
+              />
+              
+              <div className="absolute inset-0 opacity-[0.03]" 
+                style={{ backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)', backgroundSize: '60px 60px' }} 
+              />
 
               {gameState === "idle" && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/40">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/40 backdrop-blur-sm z-30">
                   <motion.div
                     animate={{ scale: [1, 1.05, 1], rotate: [0, 5, -5, 0] }}
-                    transition={{ repeat: Infinity, duration: 6 }}
-                    className="mb-8"
+                    transition={{ repeat: Infinity, duration: 8 }}
+                    className="mb-10 relative"
                   >
-                    <Cpu className="h-24 w-24 text-primary opacity-20" strokeWidth={1} />
+                    <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl opacity-50" />
+                    <Cpu className="h-32 w-32 text-primary opacity-30 relative z-10" strokeWidth={1} />
                   </motion.div>
-                  <h3 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter mb-4">Validate System Integrity</h3>
-                  <p className="text-muted-foreground text-base mb-10 max-w-lg font-medium leading-relaxed">
-                    Identify and resolve system anomalies in real-time. High-threat vulnerabilities require immediate intervention.
+                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-6 max-w-2xl leading-[0.9]">VALIDATE SYSTEM INTEGRITY.</h3>
+                  <p className="text-muted-foreground text-lg md:text-xl mb-12 max-w-xl font-medium leading-relaxed uppercase tracking-widest">
+                    Identify and neutralize system anomalies in real-time. Failure to react leads to infrastructure collapse.
                   </p>
-                  <Button onClick={startGame} className="rounded-none px-12 h-16 font-black tracking-[0.2em] uppercase bg-primary text-primary-foreground hover:scale-105 transition-transform shadow-lg shadow-primary/20">
-                    <Play className="mr-3 h-5 w-5 fill-current" /> Initialize Protocol
+                  <Button onClick={startGame} className="rounded-2xl px-16 h-20 md:h-24 font-black text-xl tracking-[0.3em] uppercase bg-primary text-black hover:bg-white hover:scale-105 transition-all shadow-2xl shadow-primary/20">
+                    <Play className="mr-4 h-8 w-8 fill-current" /> Initialize Protocol
                   </Button>
                 </div>
               )}
 
               {gameState === "playing" && (
                 <>
-                  <div className="absolute top-8 left-8 flex gap-16 z-20">
-                    <div className="space-y-1">
-                      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Integrity Index</div>
-                      <div className="text-4xl font-display font-black tracking-tighter text-primary">{score.toString().padStart(4, '0')}</div>
+                  <div className="absolute top-10 left-10 flex gap-20 z-20">
+                    <div className="space-y-2">
+                      <div className="text-xs font-black uppercase tracking-[0.4em] text-muted-foreground">Integrity Index</div>
+                      <div className="text-5xl md:text-7xl font-display font-black tracking-tighter text-primary tabular-nums">{score.toString().padStart(4, '0')}</div>
                     </div>
-                    <div className="space-y-1">
-                      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">System Clock</div>
-                      <div className="text-4xl font-display font-black tracking-tighter">{timeLeft}s</div>
+                    <div className="space-y-2">
+                      <div className="text-xs font-black uppercase tracking-[0.4em] text-muted-foreground">Clock Cycles</div>
+                      <div className="text-5xl md:text-7xl font-display font-black tracking-tighter tabular-nums">{timeLeft}S</div>
                     </div>
+                  </div>
+                  
+                  <div className="absolute top-10 right-10 z-20 hidden lg:block text-right space-y-3">
+                    <div className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mb-4">Activity Log</div>
+                    {history.map((msg, i) => (
+                      <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, x: 20 }} 
+                        animate={{ opacity: 1 - (i * 0.2), x: 0 }}
+                        className="text-[10px] font-bold text-primary uppercase tracking-widest"
+                      >
+                        {msg}
+                      </motion.div>
+                    ))}
                   </div>
 
                   <AnimatePresence>
                     {components.map((comp) => (
                       <motion.button
                         key={comp.id}
-                        initial={{ scale: 0, opacity: 0, rotate: -45 }}
-                        animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                        exit={{ scale: 0, opacity: 0, filter: "blur(10px)" }}
+                        initial={{ scale: 0, opacity: 0, rotate: -90, filter: "blur(10px)" }}
+                        animate={{ scale: 1, opacity: 1, rotate: 0, filter: "blur(0px)" }}
+                        exit={{ scale: 1.5, opacity: 0, filter: "blur(20px)" }}
                         onClick={() => handleResolution(comp.id, comp.type)}
-                        className="absolute p-4 group/item"
+                        className="absolute p-6 group/item"
                         style={{ left: `${comp.x}%`, top: `${comp.y}%` }}
                       >
                         <div className="relative">
-                          <div className={`p-5 border-2 transition-all duration-300 group-hover/item:scale-110 shadow-lg ${
-                            comp.type === "vulnerability" ? "border-red-500 bg-red-500/10 shadow-red-500/20" :
-                            comp.type === "optimization" ? "border-primary bg-primary/10 shadow-primary/20" :
+                          <div className={`p-6 border-4 transition-all duration-300 group-hover/item:scale-110 shadow-2xl rounded-[1.5rem] ${
+                            comp.type === "vulnerability" ? "border-red-500 bg-red-500/10 shadow-red-500/30" :
+                            comp.type === "optimization" ? "border-primary bg-primary/10 shadow-primary/30" :
                             "border-white/20 bg-white/5"
                           }`}>
-                            {comp.type === "vulnerability" ? <ShieldAlert className="h-10 w-10 text-red-500" /> :
-                             comp.type === "optimization" ? <Layers className="h-10 w-10 text-primary" /> :
-                             <Search className="h-10 w-10 text-muted-foreground" />}
+                            {comp.type === "vulnerability" ? <AlertTriangle className="h-12 w-12 text-red-500" /> :
+                             comp.type === "optimization" ? <Layers className="h-12 w-12 text-primary" /> :
+                             <Activity className="h-12 w-12 text-muted-foreground" />}
                           </div>
-                          <div className="absolute -top-3 -right-3 px-2 py-0.5 bg-background border border-border text-[8px] font-black uppercase tracking-widest">
+                          <div className="absolute -top-4 -right-4 px-3 py-1 bg-background border border-border text-[9px] font-black uppercase tracking-[0.3em] rounded-lg">
                             {comp.type}
                           </div>
                         </div>
@@ -165,35 +205,44 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
               )}
 
               {gameState === "finished" && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/95 z-30">
-                  <Trophy className="h-24 w-24 text-primary mb-6" strokeWidth={1} />
-                  <h3 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter mb-2">Protocol Verified</h3>
-                  <div className="text-8xl font-display font-black tracking-tighter text-primary mb-12">
-                    {score} <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-black">Points</span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/98 z-30 backdrop-blur-xl">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="p-8 bg-primary/10 rounded-full mb-10 border border-primary/20"
+                  >
+                    <Trophy className="h-28 w-28 text-primary" strokeWidth={1} />
+                  </motion.div>
+                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-4 leading-none">PROTOCOL VERIFIED.</h3>
+                  <div className="text-9xl font-display font-black tracking-tighter text-primary mb-16 tabular-nums">
+                    {score} <span className="text-xl uppercase tracking-[0.4em] text-muted-foreground font-black ml-4">XP</span>
                   </div>
-                  <Button onClick={startGame} className="rounded-none px-12 h-16 font-black tracking-[0.2em] uppercase hover:bg-primary hover:text-primary-foreground transition-all">
-                    Initialize Next Scan
+                  <Button onClick={startGame} className="rounded-2xl px-20 h-24 font-black text-2xl tracking-[0.3em] uppercase bg-white text-black hover:bg-primary transition-all shadow-2xl shadow-white/10">
+                    RE-INITIALIZE SCAN
                   </Button>
                 </div>
               )}
             </div>
 
-            <div className="p-8 bg-secondary/20 flex flex-col md:flex-row justify-between items-center gap-6">
-              <div className="flex flex-wrap justify-center gap-12">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-none shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">Threat (50pts)</span>
+            <div className="p-10 md:p-14 bg-secondary/30 flex flex-col lg:row-row justify-between items-center gap-10 border-t border-white/5">
+              <div className="flex flex-wrap justify-center gap-16">
+                <div className="flex items-center gap-4">
+                  <div className="w-4 h-4 bg-red-500 rounded-md shadow-[0_0_15px_#ef4444]" />
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Critical Threat (50)</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-primary rounded-none shadow-[0_0_8px_rgba(0,255,255,0.5)]" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">Optim (30pts)</span>
+                <div className="flex items-center gap-4">
+                  <div className="w-4 h-4 bg-primary rounded-md shadow-[0_0_15px_#00ffff]" />
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Optimization (30)</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-muted-foreground rounded-none" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">Anomaly (20pts)</span>
+                <div className="flex items-center gap-4">
+                  <div className="w-4 h-4 bg-white/20 rounded-md" />
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Anomaly (20)</span>
                 </div>
               </div>
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 italic">System Health: 99.9% Reliable</div>
+              <div className="text-xs font-black uppercase tracking-[0.5em] text-white/10 flex items-center gap-4">
+                <ShieldCheck className="h-5 w-5" />
+                Infrastructure Reliable
+              </div>
             </div>
           </div>
         </motion.div>

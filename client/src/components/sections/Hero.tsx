@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Gauge, Trophy, MousePointer2, Download } from "lucide-react";
+import { ArrowRight, ShieldCheck, Gauge, Trophy, MousePointer2, Download, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
@@ -11,158 +11,164 @@ export function Hero() {
 
   return (
     <section className="relative min-h-[100dvh] flex items-center pt-24 pb-12 overflow-hidden bg-background">
-      {/* Background Decor */}
+      {/* Background Decor - Enhanced for top-tier feel */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-10%] w-[80%] md:w-[60%] h-[60%] bg-blue-500/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[70%] md:w-[50%] h-[50%] bg-purple-500/5 rounded-full blur-[100px]" />
+        <div className="absolute top-[-20%] right-[-10%] w-[100%] h-[80%] bg-primary/5 rounded-full blur-[150px] animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[70%] h-[70%] bg-blue-500/5 rounded-full blur-[120px]" />
+        
+        {/* Animated Grid Lines */}
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07]" 
+          style={{ 
+            backgroundImage: `linear-gradient(to right, var(--color-primary) 1px, transparent 1px), linear-gradient(to bottom, var(--color-primary) 1px, transparent 1px)`,
+            backgroundSize: '80px 80px'
+          }} 
+        />
+        
         <img 
           src="/assets/hero-bg-v2.png" 
           alt="" 
           role="presentation"
-          className="w-full h-full object-cover opacity-30 md:opacity-40 dark:opacity-20 mix-blend-overlay"
+          className="w-full h-full object-cover opacity-20 dark:opacity-10 mix-blend-overlay"
         />
       </div>
 
       <div className="container-custom relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
           <div className="lg:col-span-7 text-center lg:text-left">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                Aspiring Quality Engineer
+              <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-black uppercase tracking-[0.3em] mb-10 shadow-sm backdrop-blur-sm">
+                <Sparkles className="h-4 w-4" />
+                Precision in Every Byte
               </div>
               
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black leading-[0.9] tracking-tighter mb-6 md:mb-8 uppercase">
-                LEARNING <br className="hidden sm:block" />
-                <span className="text-muted-foreground/30">QUALITY</span> <br className="hidden sm:block" />
-                CONTROL.
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-display font-black leading-[0.8] tracking-tighter mb-10 uppercase">
+                QUALITY <br className="hidden sm:block" />
+                <span className="text-muted-foreground/20">WITHOUT</span> <br className="hidden sm:block" />
+                LIMITS.
               </h1>
               
-              <p className="text-base md:text-xl text-muted-foreground mb-10 md:mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                Arisha Mumtaz. I am currently learning the art of software testing, exploring how to find bugs, and understanding the foundations of quality assurance.
+              <p className="text-lg md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                Arisha Mumtaz. Engineering excellence through rigorous validation. I transform complex software challenges into verified, high-performance solutions.
               </p>
 
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 justify-center lg:justify-start items-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-5 md:gap-8 justify-center lg:justify-start items-center">
                 <Link href="/projects" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto rounded-none px-10 h-14 md:h-16 text-sm md:text-base font-bold tracking-tight bg-primary text-primary-foreground hover:bg-primary/90">
-                    EXPLORE MY WORK
-                    <ArrowRight className="ml-3 h-5 w-5" />
+                  <Button size="lg" className="w-full sm:w-auto rounded-none px-12 h-16 md:h-20 text-base md:text-lg font-black tracking-[0.1em] bg-primary text-primary-foreground hover:bg-primary/90 group relative overflow-hidden shadow-2xl shadow-primary/20">
+                    <span className="relative z-10 flex items-center">
+                      EXPLORE MY WORK
+                      <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                    </span>
+                    <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                   </Button>
                 </Link>
                 
                 <a href={RESUME_LINK} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-none px-10 h-14 md:h-16 text-sm md:text-base font-bold tracking-tight border-primary text-primary hover:bg-primary/5">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-none px-12 h-16 md:h-20 text-base md:text-lg font-black tracking-[0.1em] border-primary/20 text-primary hover:bg-primary/5 transition-all">
                     DOWNLOAD RESUME
-                    <Download className="ml-3 h-5 w-5" />
+                    <Download className="ml-4 h-6 w-6" />
                   </Button>
                 </a>
 
                 <button 
                   onClick={() => setIsGameOpen(true)}
-                  className="w-full sm:w-auto flex items-center justify-center gap-4 px-8 h-14 md:h-16 border border-border group cursor-pointer hover:bg-secondary transition-all duration-300"
+                  className="w-full sm:w-auto flex items-center justify-center gap-5 px-10 h-16 md:h-20 border border-border/50 group cursor-pointer hover:bg-secondary/50 transition-all duration-300 backdrop-blur-sm"
                 >
-                  <motion.div 
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
-                    className="text-primary"
-                  >
-                    <MousePointer2 className="h-5 w-5" />
-                  </motion.div>
-                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] group-hover:text-primary transition-colors">Launch Protocol</span>
+                  <div className="relative">
+                    <motion.div 
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                      transition={{ repeat: Infinity, duration: 2 }}
+                      className="absolute inset-0 bg-primary/20 rounded-full blur-md"
+                    />
+                    <MousePointer2 className="h-6 w-6 text-primary relative z-10" />
+                  </div>
+                  <span className="text-xs font-black text-muted-foreground uppercase tracking-[0.3em] group-hover:text-primary transition-colors">Start Protocol</span>
                 </button>
               </div>
             </motion.div>
           </div>
 
-          <div className="lg:col-span-5 relative mt-8 lg:mt-0 px-4 sm:px-12 lg:px-0">
+          <div className="lg:col-span-5 relative mt-16 lg:mt-0">
             <motion.div
-              whileHover={{ scale: 1.02, rotateY: 5, rotateX: -5 }}
-              style={{ perspective: 1000 }}
-              className="relative aspect-[4/5] bg-secondary border border-border overflow-hidden group cursor-crosshair shadow-2xl transition-all duration-500"
+              initial={{ opacity: 0, scale: 0.9, rotate: 10 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative"
             >
-               {/* Visual Eye-Catcher: Dynamic Grid */}
-               <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-20">
-                  <div className="flex justify-between items-start">
-                    <motion.div
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ repeat: Infinity, duration: 3 }}
-                    >
-                      <Trophy className="h-8 w-8 md:h-12 md:w-12 text-primary" strokeWidth={1.5} />
-                    </motion.div>
-                    <div className="text-right">
-                      <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="text-3xl md:text-4xl font-black font-display tracking-tighter"
-                      >
-                        LEARNER
-                      </motion.div>
-                      <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Growth Mindset</div>
+              <div className="absolute -inset-4 bg-primary/5 rounded-[4rem] blur-3xl opacity-50" />
+              <div 
+                className="relative aspect-[4/5] bg-secondary/30 border border-white/10 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] backdrop-blur-sm rounded-[3rem] group"
+              >
+                {/* Visual Eye-Catcher: Corporate Tech Vibe */}
+                <div className="absolute inset-0 p-10 md:p-14 flex flex-col justify-between z-20">
+                    <div className="flex justify-between items-start">
+                      <div className="p-5 bg-primary/10 rounded-3xl border border-white/10 backdrop-blur-xl">
+                        <ShieldCheck className="h-10 w-10 text-primary" strokeWidth={1.5} />
+                      </div>
+                      <div className="text-right">
+                        <div className="text-5xl font-black font-display tracking-tighter text-foreground">
+                          QA<span className="text-primary">.PRO</span>
+                        </div>
+                        <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] mt-1">Status: Active</div>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="space-y-4">
-                    <div className="h-[1px] w-full bg-border" />
-                    <div className="flex justify-between text-[8px] md:text-[10px] font-bold uppercase tracking-tighter text-muted-foreground">
-                      <span>Interactive_Mode</span>
-                      <span>Hover_To_Explore</span>
-                      <span>v1.0.4</span>
+                    <div className="space-y-8">
+                      <div className="flex items-center gap-6">
+                        <div className="flex -space-x-4">
+                          {[1,2,3].map(i => (
+                            <div key={i} className="w-12 h-12 rounded-full bg-secondary border-4 border-background flex items-center justify-center font-black text-xs text-muted-foreground">
+                              {i}
+                            </div>
+                          ))}
+                        </div>
+                        <div className="h-px flex-1 bg-border/50" />
+                      </div>
+                      
+                      <div className="grid grid-cols-12 gap-2 h-24 items-end px-2">
+                        {[40, 70, 45, 90, 65, 30, 85, 50, 95, 60, 40, 80].map((h, i) => (
+                          <motion.div 
+                            key={i}
+                            initial={{ height: 0 }}
+                            animate={{ height: `${h}%` }}
+                            transition={{ delay: i * 0.05, duration: 1 }}
+                            className="bg-primary/20 hover:bg-primary transition-colors col-span-1 rounded-full"
+                          />
+                        ))}
+                      </div>
+                      
+                      <div className="flex justify-between items-center pt-4 border-t border-border/50 text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
+                          Live Validation
+                        </div>
+                        <div>2026.REL.V4</div>
+                      </div>
                     </div>
-                    <div className="grid grid-cols-12 gap-1 h-16 md:h-20 items-end">
-                      {[40, 70, 45, 90, 65, 30, 85, 50, 95, 60, 40, 80].map((h, i) => (
-                        <motion.div 
-                          key={i}
-                          initial={{ height: 0 }}
-                          whileHover={{ height: '100%', backgroundColor: 'var(--color-primary)' }}
-                          animate={{ height: `${h}%` }}
-                          transition={{ type: "spring", stiffness: 300 }}
-                          className="bg-primary/20 col-span-1"
-                        />
-                      ))}
-                    </div>
-                  </div>
-               </div>
-
-               {/* Dynamic Floating Elements */}
-               <motion.div 
-                 animate={{ 
-                   y: [0, -20, 0],
-                   x: [0, 10, 0]
-                 }}
-                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                 className="absolute top-1/4 left-1/4 w-8 h-8 md:w-12 md:h-12 border border-primary/20 rounded-full z-10"
-               />
-               <motion.div 
-                 animate={{ 
-                   y: [0, 20, 0],
-                   x: [0, -15, 0]
-                 }}
-                 transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
-                 className="absolute bottom-1/3 right-1/4 w-6 h-6 md:w-8 md:h-8 border border-secondary/20 rotate-45 z-10"
-               />
-
-               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5 pointer-events-none" />
-            </motion.div>
-            
-            {/* Floating Metric - Hidden on mobile, visible on lg */}
-            <motion.div 
-              drag
-              dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
-              className="hidden lg:flex absolute -bottom-8 -left-8 glass-card p-6 border border-border shadow-2xl z-30 cursor-grab active:cursor-grabbing"
-            >
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-primary text-primary-foreground">
-                  <Gauge className="h-6 w-6" />
                 </div>
-                <div>
-                  <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Knowledge Base</div>
-                  <div className="text-xl font-black">EXPANDING</div>
-                </div>
+
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
               </div>
+              
+              {/* Floating Metric Card */}
+              <motion.div 
+                animate={{ y: [0, -15, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                className="absolute -bottom-10 -right-10 hidden lg:block glass-card p-8 border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] z-30 rounded-3xl"
+              >
+                <div className="flex items-center gap-5">
+                  <div className="p-4 bg-primary text-primary-foreground rounded-2xl shadow-lg shadow-primary/20">
+                    <Trophy className="h-8 w-8" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-1">Expertise level</div>
+                    <div className="text-2xl font-black tracking-tight">VERIFIED</div>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
