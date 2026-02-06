@@ -18,6 +18,7 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
   const [timeLeft, setTimeLeft] = useState(30);
   const [difficulty, setDifficulty] = useState(1);
   const [history, setHistory] = useState<string[]>([]);
+  const [lastAction, setLastAction] = useState<string | null>(null);
 
   const spawnComponent = useCallback(() => {
     const id = Date.now() + Math.random();
@@ -65,11 +66,15 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
     setComponents((prev) => prev.filter((c) => c.id !== id));
     
     const messages = {
-      vulnerability: "Critical security breach patched.",
-      optimization: "System performance enhanced.",
-      bug: "Functional defect eliminated."
+      vulnerability: "Security Breach Patched!",
+      optimization: "Performance Boosted!",
+      bug: "Bug Eliminated!"
     };
-    setHistory(prev => [messages[type as keyof typeof messages], ...prev].slice(0, 5));
+    const msg = messages[type as keyof typeof messages];
+    setLastAction(msg);
+    setHistory(prev => [msg, ...prev].slice(0, 5));
+    
+    setTimeout(() => setLastAction(null), 1000);
   };
 
   const startGame = () => {
@@ -101,10 +106,10 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                     <ShieldCheck className="h-8 w-8 text-primary" strokeWidth={2.5} />
                   </div>
                   <div>
-                    <span className="font-display font-black text-2xl md:text-4xl tracking-tighter uppercase">Infrastructure Validator</span>
+                    <span className="font-display font-black text-2xl md:text-4xl tracking-tighter uppercase">Bug Hunter Lab</span>
                     <div className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mt-1 flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                      Protocol: Verifier_v5.4
+                      Status: Ready for testing
                     </div>
                   </div>
                 </div>
@@ -115,17 +120,6 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
             </div>
 
             <div className="relative aspect-[16/9] md:aspect-[21/9] bg-background/50 overflow-hidden group">
-              {/* Animated Scan Line */}
-              <motion.div 
-                animate={{ top: ['0%', '100%', '0%'] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                className="absolute left-0 right-0 h-[1px] bg-primary/20 z-10 pointer-events-none"
-              />
-              
-              <div className="absolute inset-0 opacity-[0.03]" 
-                style={{ backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)', backgroundSize: '60px 60px' }} 
-              />
-
               {gameState === "idle" && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/40 backdrop-blur-sm z-30">
                   <motion.div
@@ -136,12 +130,12 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                     <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl opacity-50" />
                     <Cpu className="h-32 w-32 text-primary opacity-30 relative z-10" strokeWidth={1} />
                   </motion.div>
-                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-6 max-w-2xl leading-[0.9]">VALIDATE SYSTEM INTEGRITY.</h3>
+                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-6 max-w-2xl leading-[0.9]">CATCH THE BUGS!</h3>
                   <p className="text-muted-foreground text-lg md:text-xl mb-12 max-w-xl font-medium leading-relaxed uppercase tracking-widest">
-                    Identify and neutralize system anomalies in real-time. Failure to react leads to infrastructure collapse.
+                    Help Arisha find all the hidden bugs and security issues. Click them as fast as you can!
                   </p>
                   <Button onClick={startGame} className="rounded-2xl px-16 h-20 md:h-24 font-black text-xl tracking-[0.3em] uppercase bg-primary text-black hover:bg-white hover:scale-105 transition-all shadow-2xl shadow-primary/20">
-                    <Play className="mr-4 h-8 w-8 fill-current" /> Initialize Protocol
+                    <Play className="mr-4 h-8 w-8 fill-current" /> START GAME
                   </Button>
                 </div>
               )}
@@ -150,36 +144,35 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                 <>
                   <div className="absolute top-10 left-10 flex gap-20 z-20">
                     <div className="space-y-2">
-                      <div className="text-xs font-black uppercase tracking-[0.4em] text-muted-foreground">Integrity Index</div>
+                      <div className="text-xs font-black uppercase tracking-[0.4em] text-muted-foreground">Score</div>
                       <div className="text-5xl md:text-7xl font-display font-black tracking-tighter text-primary tabular-nums">{score.toString().padStart(4, '0')}</div>
                     </div>
                     <div className="space-y-2">
-                      <div className="text-xs font-black uppercase tracking-[0.4em] text-muted-foreground">Clock Cycles</div>
+                      <div className="text-xs font-black uppercase tracking-[0.4em] text-muted-foreground">Time Left</div>
                       <div className="text-5xl md:text-7xl font-display font-black tracking-tighter tabular-nums">{timeLeft}S</div>
                     </div>
                   </div>
                   
-                  <div className="absolute top-10 right-10 z-20 hidden lg:block text-right space-y-3">
-                    <div className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mb-4">Activity Log</div>
-                    {history.map((msg, i) => (
-                      <motion.div 
-                        key={i} 
-                        initial={{ opacity: 0, x: 20 }} 
-                        animate={{ opacity: 1 - (i * 0.2), x: 0 }}
-                        className="text-[10px] font-bold text-primary uppercase tracking-widest"
+                  <AnimatePresence>
+                    {lastAction && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 bg-primary/90 text-black px-8 py-4 rounded-full font-black uppercase tracking-widest text-lg"
                       >
-                        {msg}
+                        {lastAction}
                       </motion.div>
-                    ))}
-                  </div>
+                    )}
+                  </AnimatePresence>
 
                   <AnimatePresence>
                     {components.map((comp) => (
                       <motion.button
                         key={comp.id}
-                        initial={{ scale: 0, opacity: 0, rotate: -90, filter: "blur(10px)" }}
-                        animate={{ scale: 1, opacity: 1, rotate: 0, filter: "blur(0px)" }}
-                        exit={{ scale: 1.5, opacity: 0, filter: "blur(20px)" }}
+                        initial={{ scale: 0, opacity: 0, rotate: -90 }}
+                        animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                        exit={{ scale: 1.5, opacity: 0 }}
                         onClick={() => handleResolution(comp.id, comp.type)}
                         className="absolute p-6 group/item"
                         style={{ left: `${comp.x}%`, top: `${comp.y}%` }}
@@ -187,12 +180,12 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                         <div className="relative">
                           <div className={`p-6 border-4 transition-all duration-300 group-hover/item:scale-110 shadow-2xl rounded-[1.5rem] ${
                             comp.type === "vulnerability" ? "border-red-500 bg-red-500/10 shadow-red-500/30" :
-                            comp.type === "optimization" ? "border-primary bg-primary/10 shadow-primary/30" :
-                            "border-white/20 bg-white/5"
+                            comp.type === "optimization" ? "border-green-500 bg-green-500/10 shadow-green-500/30" :
+                            "border-blue-500 bg-blue-500/10 shadow-blue-500/30"
                           }`}>
                             {comp.type === "vulnerability" ? <AlertTriangle className="h-12 w-12 text-red-500" /> :
-                             comp.type === "optimization" ? <Layers className="h-12 w-12 text-primary" /> :
-                             <Activity className="h-12 w-12 text-muted-foreground" />}
+                             comp.type === "optimization" ? <ShieldCheck className="h-12 w-12 text-green-500" /> :
+                             <Bug className="h-12 w-12 text-blue-500" />}
                           </div>
                           <div className="absolute -top-4 -right-4 px-3 py-1 bg-background border border-border text-[9px] font-black uppercase tracking-[0.3em] rounded-lg">
                             {comp.type}
@@ -213,12 +206,12 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                   >
                     <Trophy className="h-28 w-28 text-primary" strokeWidth={1} />
                   </motion.div>
-                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-4 leading-none">PROTOCOL VERIFIED.</h3>
+                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-4 leading-none">TEST COMPLETE!</h3>
                   <div className="text-9xl font-display font-black tracking-tighter text-primary mb-16 tabular-nums">
-                    {score} <span className="text-xl uppercase tracking-[0.4em] text-muted-foreground font-black ml-4">XP</span>
+                    {score} <span className="text-xl uppercase tracking-[0.4em] text-muted-foreground font-black ml-4">PTS</span>
                   </div>
                   <Button onClick={startGame} className="rounded-2xl px-20 h-24 font-black text-2xl tracking-[0.3em] uppercase bg-white text-black hover:bg-primary transition-all shadow-2xl shadow-white/10">
-                    RE-INITIALIZE SCAN
+                    PLAY AGAIN
                   </Button>
                 </div>
               )}
@@ -228,25 +221,50 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
               <div className="flex flex-wrap justify-center gap-16">
                 <div className="flex items-center gap-4">
                   <div className="w-4 h-4 bg-red-500 rounded-md shadow-[0_0_15px_#ef4444]" />
-                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Critical Threat (50)</span>
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/60">Security Bug (50)</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-4 h-4 bg-primary rounded-md shadow-[0_0_15px_#00ffff]" />
-                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Optimization (30)</span>
+                  <div className="w-4 h-4 bg-green-500 rounded-md shadow-[0_0_15px_#22c55e]" />
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/60">Success (30)</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-4 h-4 bg-white/20 rounded-md" />
-                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Anomaly (20)</span>
+                  <div className="w-4 h-4 bg-blue-500 rounded-md shadow-[0_0_15px_#3b82f6]" />
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/60">Normal Bug (20)</span>
                 </div>
-              </div>
-              <div className="text-xs font-black uppercase tracking-[0.5em] text-white/10 flex items-center gap-4">
-                <ShieldCheck className="h-5 w-5" />
-                Infrastructure Reliable
               </div>
             </div>
           </div>
         </motion.div>
       )}
     </AnimatePresence>
+  );
+}
+
+function Bug(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m8 2 1.88 1.88" />
+      <path d="M14.12 3.88 16 2" />
+      <path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1" />
+      <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6" />
+      <path d="M12 20v-9" />
+      <path d="M6.53 9C4.6 8.8 3 7.1 3 5" />
+      <path d="M6 13H2" />
+      <path d="M3 21c0-2.1 1.7-3.9 3.8-4" />
+      <path d="M20.97 5c0 2.1-1.6 3.8-3.5 4" />
+      <path d="M22 13h-4" />
+      <path d="M17.2 17c2.1.1 3.8 1.9 3.8 4" />
+    </svg>
   );
 }

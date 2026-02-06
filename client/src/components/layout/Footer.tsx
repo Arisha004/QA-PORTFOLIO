@@ -74,18 +74,18 @@ export function Footer() {
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 ml-1">Identity</label>
-                    <Input required className="rounded-2xl bg-white/5 border-white/10 h-16 text-white placeholder:text-white/10 focus:ring-primary/50 focus:border-primary px-6" placeholder="Full Name" />
+                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60 ml-1">Identity</label>
+                    <Input required className="rounded-2xl bg-white/5 border-white/20 h-16 text-white placeholder:text-white/30 focus:ring-primary/50 focus:border-primary px-6" placeholder="Full Name" />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 ml-1">Encrypted Mail</label>
-                    <Input required type="email" className="rounded-2xl bg-white/5 border-white/10 h-16 text-white placeholder:text-white/10 focus:ring-primary/50 focus:border-primary px-6" placeholder="email@address.com" />
+                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60 ml-1">Encrypted Mail</label>
+                    <Input required type="email" className="rounded-2xl bg-white/5 border-white/20 h-16 text-white placeholder:text-white/30 focus:ring-primary/50 focus:border-primary px-6" placeholder="email@address.com" />
                   </div>
                 </div>
                 
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 ml-1">Message Payload</label>
-                  <Textarea required className="rounded-[2rem] bg-white/5 border-white/10 min-h-[180px] text-white placeholder:text-white/10 focus:ring-primary/50 focus:border-primary px-6 py-6" placeholder="Describe your quality requirements..." />
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60 ml-1">Message Payload</label>
+                  <Textarea required className="rounded-[2rem] bg-white/5 border-white/20 min-h-[180px] text-white placeholder:text-white/30 focus:ring-primary/50 focus:border-primary px-6 py-6" placeholder="Describe your quality requirements..." />
                 </div>
                 
                 <Button disabled={isSubmitting} className="w-full h-20 rounded-[2rem] bg-primary text-black font-black text-lg uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-500 shadow-2xl shadow-primary/10 group">
