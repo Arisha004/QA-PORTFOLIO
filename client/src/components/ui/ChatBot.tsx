@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, User, Bot, Sparkles, MessageSquare } from "lucide-react";
+import { X, Send, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -68,7 +68,6 @@ export function ChatBot() {
             <X className="h-8 w-8 relative z-10" />
           ) : (
             <div className="relative w-full h-full flex items-center justify-center">
-              {/* 3D QA Tester Icon Mockup */}
               <div className="absolute inset-0 bg-gradient-to-tr from-primary via-primary/80 to-blue-500 opacity-20 group-hover:opacity-40 transition-opacity" />
               <div className="relative z-10 flex flex-col items-center">
                 <Bot className="h-8 w-8 mb-0.5" />
@@ -86,7 +85,7 @@ export function ChatBot() {
             initial={{ opacity: 0, y: 100, scale: 0.8, filter: "blur(20px)" }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: 100, scale: 0.8, filter: "blur(20px)" }}
-            className="fixed bottom-24 right-4 md:bottom-32 md:right-8 w-[calc(100vw-32px)] sm:w-[500px] md:w-[600px] h-[600px] md:h-[750px] glass-card z-[100] flex flex-col overflow-hidden rounded-3xl border border-white/20 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] bg-white/95 dark:bg-black/95 backdrop-blur-3xl"
+            className="fixed bottom-24 right-4 md:bottom-32 md:right-8 w-[calc(100vw-32px)] sm:w-[450px] md:w-[500px] h-[550px] md:h-[650px] glass-card z-[100] flex flex-col overflow-hidden rounded-3xl border border-white/20 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] bg-white/95 dark:bg-black/95 backdrop-blur-3xl"
           >
             <div className="p-6 md:p-8 bg-primary text-primary-foreground flex justify-between items-center relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
@@ -130,7 +129,7 @@ export function ChatBot() {
                 className="flex gap-3 md:gap-4"
               >
                 <Input 
-                  placeholder="Inquire about Arisha's professional journey..." 
+                  placeholder="Inquire about Arisha..." 
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   className="rounded-2xl h-14 md:h-16 border-border/50 bg-background/50 focus:ring-2 focus:ring-primary text-base px-6"
