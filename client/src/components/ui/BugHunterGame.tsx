@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Trophy, Play, ShieldAlert, Cpu, Layers, Activity, Search, ShieldCheck, AlertTriangle } from "lucide-react";
+import { X, Trophy, Play, ShieldAlert, Cpu, Layers, Search, ShieldCheck, AlertTriangle, Bug } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type ComponentState = {
@@ -17,7 +17,6 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [difficulty, setDifficulty] = useState(1);
-  const [history, setHistory] = useState<string[]>([]);
   const [lastAction, setLastAction] = useState<string | null>(null);
 
   const spawnComponent = useCallback(() => {
@@ -72,7 +71,6 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
     };
     const msg = messages[type as keyof typeof messages];
     setLastAction(msg);
-    setHistory(prev => [msg, ...prev].slice(0, 5));
     
     setTimeout(() => setLastAction(null), 1000);
   };
@@ -82,7 +80,6 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
     setTimeLeft(30);
     setDifficulty(1);
     setComponents([]);
-    setHistory([]);
     setGameState("playing");
   };
 
@@ -102,40 +99,40 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
               <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-2">
-                  <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20">
+                  <div className="p-3 bg-primary/20 rounded-2xl border border-primary/30">
                     <ShieldCheck className="h-8 w-8 text-primary" strokeWidth={2.5} />
                   </div>
                   <div>
-                    <span className="font-display font-black text-2xl md:text-4xl tracking-tighter uppercase">Bug Hunter Lab</span>
-                    <div className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground mt-1 flex items-center gap-2">
+                    <span className="font-display font-black text-2xl md:text-4xl tracking-tighter uppercase text-white">Bug Hunter Lab</span>
+                    <div className="text-[10px] font-black uppercase tracking-[0.4em] text-primary mt-1 flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                      Status: Ready for testing
+                      SYSTEM STATUS: ENGAGED
                     </div>
                   </div>
                 </div>
               </div>
-              <Button variant="ghost" size="icon" onClick={onClose} className="relative z-10 rounded-full h-16 w-16 hover:bg-white/5 hover:text-white transition-all">
+              <Button variant="ghost" size="icon" onClick={onClose} className="relative z-10 rounded-full h-16 w-16 text-white hover:bg-white/5 transition-all">
                 <X className="h-8 w-8" />
               </Button>
             </div>
 
-            <div className="relative aspect-[16/9] md:aspect-[21/9] bg-background/50 overflow-hidden group">
+            <div className="relative aspect-[16/9] md:aspect-[21/9] bg-black/50 overflow-hidden group">
               {gameState === "idle" && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/40 backdrop-blur-sm z-30">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-black/60 backdrop-blur-sm z-30">
                   <motion.div
-                    animate={{ scale: [1, 1.05, 1], rotate: [0, 5, -5, 0] }}
+                    animate={{ scale: [1, 1.1, 1], rotate: [0, 10, -10, 0] }}
                     transition={{ repeat: Infinity, duration: 8 }}
                     className="mb-10 relative"
                   >
-                    <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl opacity-50" />
-                    <Cpu className="h-32 w-32 text-primary opacity-30 relative z-10" strokeWidth={1} />
+                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl opacity-50" />
+                    <Cpu className="h-32 w-32 text-primary opacity-50 relative z-10" strokeWidth={1} />
                   </motion.div>
-                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-6 max-w-2xl leading-[0.9]">CATCH THE BUGS!</h3>
-                  <p className="text-muted-foreground text-lg md:text-xl mb-12 max-w-xl font-medium leading-relaxed uppercase tracking-widest">
-                    Help Arisha find all the hidden bugs and security issues. Click them as fast as you can!
+                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-6 max-w-2xl leading-[0.9] text-white">CATCH THE BUGS!</h3>
+                  <p className="text-white/80 text-lg md:text-xl mb-12 max-w-xl font-medium leading-relaxed uppercase tracking-widest">
+                    Identify and neutralize system anomalies. Failure to react leads to infrastructure collapse.
                   </p>
-                  <Button onClick={startGame} className="rounded-2xl px-16 h-20 md:h-24 font-black text-xl tracking-[0.3em] uppercase bg-primary text-black hover:bg-white hover:scale-105 transition-all shadow-2xl shadow-primary/20">
-                    <Play className="mr-4 h-8 w-8 fill-current" /> START GAME
+                  <Button onClick={startGame} className="rounded-2xl px-16 h-20 md:h-24 font-black text-xl tracking-[0.3em] uppercase bg-primary text-white hover:bg-white hover:text-black hover:scale-105 transition-all shadow-2xl shadow-primary/40 border-none">
+                    <Play className="mr-4 h-8 w-8 fill-current" /> START MISSION
                   </Button>
                 </div>
               )}
@@ -144,22 +141,22 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                 <>
                   <div className="absolute top-10 left-10 flex gap-20 z-20">
                     <div className="space-y-2">
-                      <div className="text-xs font-black uppercase tracking-[0.4em] text-muted-foreground">Score</div>
-                      <div className="text-5xl md:text-7xl font-display font-black tracking-tighter text-primary tabular-nums">{score.toString().padStart(4, '0')}</div>
+                      <div className="text-xs font-black uppercase tracking-[0.4em] text-primary">Score</div>
+                      <div className="text-5xl md:text-7xl font-display font-black tracking-tighter text-white tabular-nums">{score.toString().padStart(4, '0')}</div>
                     </div>
                     <div className="space-y-2">
-                      <div className="text-xs font-black uppercase tracking-[0.4em] text-muted-foreground">Time Left</div>
-                      <div className="text-5xl md:text-7xl font-display font-black tracking-tighter tabular-nums">{timeLeft}S</div>
+                      <div className="text-xs font-black uppercase tracking-[0.4em] text-primary">Timer</div>
+                      <div className="text-5xl md:text-7xl font-display font-black tracking-tighter text-white tabular-nums">{timeLeft}S</div>
                     </div>
                   </div>
                   
                   <AnimatePresence>
                     {lastAction && (
                       <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 bg-primary/90 text-black px-8 py-4 rounded-full font-black uppercase tracking-widest text-lg"
+                        initial={{ opacity: 0, scale: 0.5, y: 50 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 1.5 }}
+                        className="absolute bottom-20 left-1/2 -translate-x-1/2 z-50 bg-primary text-black px-12 py-5 rounded-full font-black uppercase tracking-[0.3em] text-xl shadow-[0_0_50px_rgba(0,255,255,0.5)]"
                       >
                         {lastAction}
                       </motion.div>
@@ -178,16 +175,20 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                         style={{ left: `${comp.x}%`, top: `${comp.y}%` }}
                       >
                         <div className="relative">
-                          <div className={`p-6 border-4 transition-all duration-300 group-hover/item:scale-110 shadow-2xl rounded-[1.5rem] ${
-                            comp.type === "vulnerability" ? "border-red-500 bg-red-500/10 shadow-red-500/30" :
-                            comp.type === "optimization" ? "border-green-500 bg-green-500/10 shadow-green-500/30" :
-                            "border-blue-500 bg-blue-500/10 shadow-blue-500/30"
+                          <div className={`p-6 border-4 transition-all duration-300 group-hover/item:scale-110 shadow-2xl rounded-[1.5rem] bg-black/40 backdrop-blur-md ${
+                            comp.type === "vulnerability" ? "border-red-500 shadow-red-500/50" :
+                            comp.type === "optimization" ? "border-green-500 shadow-green-500/50" :
+                            "border-blue-500 shadow-blue-500/50"
                           }`}>
                             {comp.type === "vulnerability" ? <AlertTriangle className="h-12 w-12 text-red-500" /> :
                              comp.type === "optimization" ? <ShieldCheck className="h-12 w-12 text-green-500" /> :
                              <Bug className="h-12 w-12 text-blue-500" />}
                           </div>
-                          <div className="absolute -top-4 -right-4 px-3 py-1 bg-background border border-border text-[9px] font-black uppercase tracking-[0.3em] rounded-lg">
+                          <div className={`absolute -top-4 -right-4 px-3 py-1 bg-black border text-[9px] font-black uppercase tracking-[0.3em] rounded-lg ${
+                            comp.type === "vulnerability" ? "text-red-500 border-red-500" :
+                            comp.type === "optimization" ? "text-green-500 border-green-500" :
+                            "text-blue-500 border-blue-500"
+                          }`}>
                             {comp.type}
                           </div>
                         </div>
@@ -198,39 +199,43 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
               )}
 
               {gameState === "finished" && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-background/98 z-30 backdrop-blur-xl">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-black/90 z-30 backdrop-blur-xl">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="p-8 bg-primary/10 rounded-full mb-10 border border-primary/20"
+                    className="p-8 bg-primary/20 rounded-full mb-10 border border-primary/40 shadow-[0_0_50px_rgba(0,255,255,0.2)]"
                   >
                     <Trophy className="h-28 w-28 text-primary" strokeWidth={1} />
                   </motion.div>
-                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-4 leading-none">TEST COMPLETE!</h3>
-                  <div className="text-9xl font-display font-black tracking-tighter text-primary mb-16 tabular-nums">
-                    {score} <span className="text-xl uppercase tracking-[0.4em] text-muted-foreground font-black ml-4">PTS</span>
+                  <h3 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-4 leading-none text-white">MISSION COMPLETED.</h3>
+                  <div className="text-9xl font-display font-black tracking-tighter text-primary mb-16 tabular-nums drop-shadow-[0_0_30px_rgba(0,255,255,0.5)]">
+                    {score} <span className="text-xl uppercase tracking-[0.4em] text-white/40 font-black ml-4">PTS</span>
                   </div>
-                  <Button onClick={startGame} className="rounded-2xl px-20 h-24 font-black text-2xl tracking-[0.3em] uppercase bg-white text-black hover:bg-primary transition-all shadow-2xl shadow-white/10">
-                    PLAY AGAIN
+                  <Button onClick={startGame} className="rounded-2xl px-20 h-24 font-black text-2xl tracking-[0.3em] uppercase bg-white text-black hover:bg-primary transition-all shadow-2xl">
+                    RE-INITIALIZE
                   </Button>
                 </div>
               )}
             </div>
 
-            <div className="p-10 md:p-14 bg-secondary/30 flex flex-col lg:row-row justify-between items-center gap-10 border-t border-white/5">
+            <div className="p-10 md:p-14 bg-black/80 flex flex-col lg:flex-row justify-between items-center gap-10 border-t border-white/10">
               <div className="flex flex-wrap justify-center gap-16">
                 <div className="flex items-center gap-4">
-                  <div className="w-4 h-4 bg-red-500 rounded-md shadow-[0_0_15px_#ef4444]" />
-                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/60">Security Bug (50)</span>
+                  <div className="w-5 h-5 bg-red-500 rounded-md shadow-[0_0_20px_#ef4444]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-red-500">THREAT (50)</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-4 h-4 bg-green-500 rounded-md shadow-[0_0_15px_#22c55e]" />
-                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/60">Success (30)</span>
+                  <div className="w-5 h-5 bg-green-500 rounded-md shadow-[0_0_20px_#22c55e]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-green-500">OPTIM (30)</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-4 h-4 bg-blue-500 rounded-md shadow-[0_0_15px_#3b82f6]" />
-                  <span className="text-xs font-black uppercase tracking-[0.3em] text-white/60">Normal Bug (20)</span>
+                  <div className="w-5 h-5 bg-blue-500 rounded-md shadow-[0_0_20px_#3b82f6]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-500">ANOMALY (20)</span>
                 </div>
+              </div>
+              <div className="text-xs font-black uppercase tracking-[0.5em] text-primary/40 flex items-center gap-4">
+                <ShieldCheck className="h-5 w-5" />
+                PROTOCOL: VERIFIED_OPS
               </div>
             </div>
           </div>

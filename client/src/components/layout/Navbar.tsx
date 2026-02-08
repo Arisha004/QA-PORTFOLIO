@@ -35,14 +35,14 @@ export function Navbar() {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-black/90 backdrop-blur-md border-b border-white/10 py-4" : "py-6 md:py-8"}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-black/95 backdrop-blur-md border-b border-white/20 py-4" : "py-6 md:py-8"}`}>
       <div className="container-custom flex items-center justify-between">
         <Link href="/">
           <a className="flex items-center gap-2 md:gap-3 group">
-            <div className="p-1.5 md:p-2 bg-primary text-black group-hover:rotate-12 transition-transform rounded-lg">
+            <div className="p-1.5 md:p-2 bg-primary text-black group-hover:rotate-12 transition-transform rounded-lg shadow-[0_0_15px_rgba(0,255,255,0.3)]">
               <Terminal className="h-4 w-4 md:h-5 md:h-5" />
             </div>
-            <span className="font-display font-black text-lg md:text-xl tracking-tighter uppercase text-white">Arisha<span className="text-primary">.QA</span></span>
+            <span className="font-display font-black text-xl md:text-2xl tracking-tighter uppercase text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">ARISHA<span className="text-primary">.QA</span></span>
           </a>
         </Link>
         
@@ -53,7 +53,7 @@ export function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="text-[10px] font-black tracking-[0.2em] text-white/70 hover:text-primary transition-colors uppercase"
+                className="text-[10px] font-black tracking-[0.2em] text-white hover:text-primary transition-colors uppercase drop-shadow-sm"
               >
                 {item.name}
               </a>
@@ -81,7 +81,7 @@ export function Navbar() {
               key={item.name}
               href={item.href}
               onClick={(e) => scrollToSection(e, item.href)}
-              className="text-xs font-black tracking-[0.2em] text-white/70 hover:text-primary transition-colors uppercase"
+              className="text-xs font-black tracking-[0.2em] text-white hover:text-primary transition-colors uppercase"
             >
               {item.name}
             </a>

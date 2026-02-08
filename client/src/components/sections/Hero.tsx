@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Gauge, Trophy, MousePointer2, Download, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ShieldCheck, Gauge, Trophy, MousePointer2, Download, Sparkles, Shield, Cpu, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
@@ -7,21 +7,30 @@ import { BugHunterGame } from "@/components/ui/BugHunterGame";
 
 export function Hero() {
   const [isGameOpen, setIsGameOpen] = useState(false);
-  const RESUME_LINK = "#"; // Placeholder for actual link
+  const RESUME_LINK = "#"; 
 
   return (
     <section className="relative min-h-[100dvh] flex items-center pt-24 pb-12 overflow-hidden bg-background">
-      {/* Background Decor - Enhanced for top-tier feel */}
+      {/* Enhanced Visual Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] right-[-10%] w-[100%] h-[80%] bg-primary/5 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[70%] h-[70%] bg-blue-500/5 rounded-full blur-[120px]" />
+        <div className="absolute top-[-20%] right-[-10%] w-[100%] h-[80%] bg-primary/10 rounded-full blur-[150px] animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[70%] h-[70%] bg-blue-500/10 rounded-full blur-[120px]" />
         
-        {/* Animated Grid Lines */}
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07]" 
+        <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.1]" 
           style={{ 
             backgroundImage: `linear-gradient(to right, var(--color-primary) 1px, transparent 1px), linear-gradient(to bottom, var(--color-primary) 1px, transparent 1px)`,
-            backgroundSize: '80px 80px'
+            backgroundSize: '100px 100px'
           }} 
+        />
+        
+        {/* Floating Particles/Shapes */}
+        <motion.div 
+          animate={{ 
+            y: [0, -100, 0],
+            rotate: [0, 360, 0]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-3xl"
         />
         
         <img 
@@ -40,52 +49,51 @@ export function Hero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-black uppercase tracking-[0.3em] mb-10 shadow-sm backdrop-blur-sm">
+              <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-black uppercase tracking-[0.3em] mb-10 shadow-[0_0_20px_rgba(0,255,255,0.2)] backdrop-blur-md">
                 <Sparkles className="h-4 w-4" />
-                Precision in Every Byte
+                Next-Gen Quality Engineering
               </div>
               
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-display font-black leading-[0.8] tracking-tighter mb-10 uppercase">
-                QUALITY <br className="hidden sm:block" />
-                <span className="text-muted-foreground/20">WITHOUT</span> <br className="hidden sm:block" />
-                LIMITS.
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[11rem] font-display font-black leading-[0.75] tracking-tighter mb-10 uppercase text-white drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+                ELITE <br className="hidden sm:block" />
+                <span className="text-primary font-outline-2">QUALITY</span> <br className="hidden sm:block" />
+                SYSTEMS.
               </h1>
               
-              <p className="text-lg md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                Arisha Mumtaz. Engineering excellence through rigorous validation. I transform complex software challenges into verified, high-performance solutions.
+              <p className="text-lg md:text-2xl text-white/80 mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium drop-shadow-sm">
+                Arisha Mumtaz. Redefining software reliability through high-precision validation and advanced test architectures.
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-5 md:gap-8 justify-center lg:justify-start items-center">
                 <Link href="/projects" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto rounded-none px-12 h-16 md:h-20 text-base md:text-lg font-black tracking-[0.1em] bg-primary text-primary-foreground hover:bg-primary/90 group relative overflow-hidden shadow-2xl shadow-primary/20">
+                  <Button size="lg" className="w-full sm:w-auto rounded-none px-12 h-16 md:h-20 text-base md:text-lg font-black tracking-[0.1em] bg-primary text-black hover:bg-white transition-all group relative overflow-hidden shadow-2xl shadow-primary/30">
                     <span className="relative z-10 flex items-center">
-                      EXPLORE MY WORK
+                      EXPLORE WORK
                       <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                     </span>
-                    <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                   </Button>
                 </Link>
                 
                 <a href={RESUME_LINK} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-none px-12 h-16 md:h-20 text-base md:text-lg font-black tracking-[0.1em] border-primary/20 text-primary hover:bg-primary/5 transition-all">
-                    DOWNLOAD RESUME
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-none px-12 h-16 md:h-20 text-base md:text-lg font-black tracking-[0.1em] border-primary/40 text-primary hover:bg-primary/10 transition-all backdrop-blur-sm">
+                    RESUME.PDF
                     <Download className="ml-4 h-6 w-6" />
                   </Button>
                 </a>
 
                 <button 
                   onClick={() => setIsGameOpen(true)}
-                  className="w-full sm:w-auto flex items-center justify-center gap-5 px-10 h-16 md:h-20 border border-border/50 group cursor-pointer hover:bg-secondary/50 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full sm:w-auto flex items-center justify-center gap-5 px-10 h-16 md:h-20 border border-white/20 group cursor-pointer hover:bg-white/10 transition-all duration-300 backdrop-blur-md rounded-lg shadow-xl"
                 >
                   <div className="relative">
                     <motion.div 
-                      animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                      animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.8, 0.3] }}
                       transition={{ repeat: Infinity, duration: 2 }}
-                      className="absolute inset-0 bg-primary/20 rounded-full blur-md"
+                      className="absolute inset-0 bg-primary rounded-full blur-md"
                     />
-                    <MousePointer2 className="h-6 w-6 text-primary relative z-10" />
+                    <Target className="h-6 w-6 text-white relative z-10" />
                   </div>
-                  <span className="text-xs font-black text-muted-foreground uppercase tracking-[0.3em] group-hover:text-primary transition-colors">Start Protocol</span>
+                  <span className="text-xs font-black text-white uppercase tracking-[0.3em] group-hover:text-primary transition-colors">START MISSION</span>
                 </button>
               </div>
             </motion.div>
@@ -93,79 +101,80 @@ export function Hero() {
 
           <div className="lg:col-span-5 relative mt-16 lg:mt-0">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotate: 10 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0, scale: 0.9, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative"
             >
-              <div className="absolute -inset-4 bg-primary/5 rounded-[4rem] blur-3xl opacity-50" />
+              <div className="absolute -inset-10 bg-primary/10 rounded-[4rem] blur-[100px] opacity-50" />
               <div 
-                className="relative aspect-[4/5] bg-secondary/30 border border-white/10 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] backdrop-blur-sm rounded-[3rem] group"
+                className="relative aspect-[4/5] bg-gradient-to-br from-white/10 to-white/5 border border-white/20 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.7)] backdrop-blur-md rounded-[4rem] group"
               >
-                {/* Visual Eye-Catcher: Corporate Tech Vibe */}
+                {/* Enhanced Corporate Tech Vibe */}
                 <div className="absolute inset-0 p-10 md:p-14 flex flex-col justify-between z-20">
                     <div className="flex justify-between items-start">
-                      <div className="p-5 bg-primary/10 rounded-3xl border border-white/10 backdrop-blur-xl">
-                        <ShieldCheck className="h-10 w-10 text-primary" strokeWidth={1.5} />
+                      <div className="p-5 bg-primary rounded-3xl border border-white/20 shadow-[0_0_30px_rgba(0,255,255,0.4)]">
+                        <ShieldCheck className="h-10 w-10 text-black" strokeWidth={2} />
                       </div>
                       <div className="text-right">
-                        <div className="text-5xl font-black font-display tracking-tighter text-foreground">
-                          QA<span className="text-primary">.PRO</span>
+                        <div className="text-5xl font-black font-display tracking-tighter text-white">
+                          QA<span className="text-primary">.V4</span>
                         </div>
-                        <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] mt-1">Status: Active</div>
+                        <div className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mt-2 drop-shadow-md">STATUS: ELITE</div>
                       </div>
                     </div>
 
-                    <div className="space-y-8">
+                    <div className="space-y-10">
                       <div className="flex items-center gap-6">
                         <div className="flex -space-x-4">
-                          {[1,2,3].map(i => (
-                            <div key={i} className="w-12 h-12 rounded-full bg-secondary border-4 border-background flex items-center justify-center font-black text-xs text-muted-foreground">
-                              {i}
+                          {[Shield, Cpu, Target].map((Icon, i) => (
+                            <div key={i} className="w-14 h-14 rounded-full bg-black border-2 border-primary/50 flex items-center justify-center shadow-lg">
+                              <Icon className="h-6 w-6 text-primary" />
                             </div>
                           ))}
                         </div>
-                        <div className="h-px flex-1 bg-border/50" />
+                        <div className="h-1 flex-1 bg-gradient-to-r from-primary/50 to-transparent rounded-full" />
                       </div>
                       
-                      <div className="grid grid-cols-12 gap-2 h-24 items-end px-2">
-                        {[40, 70, 45, 90, 65, 30, 85, 50, 95, 60, 40, 80].map((h, i) => (
+                      <div className="grid grid-cols-12 gap-3 h-28 items-end px-2">
+                        {[60, 90, 55, 100, 75, 40, 95, 60, 100, 70, 50, 90].map((h, i) => (
                           <motion.div 
                             key={i}
                             initial={{ height: 0 }}
                             animate={{ height: `${h}%` }}
-                            transition={{ delay: i * 0.05, duration: 1 }}
-                            className="bg-primary/20 hover:bg-primary transition-colors col-span-1 rounded-full"
+                            transition={{ delay: i * 0.05, duration: 1.5, ease: "easeOut" }}
+                            className="bg-primary/30 group-hover:bg-primary transition-all duration-500 col-span-1 rounded-t-full shadow-[0_0_15px_rgba(0,255,255,0.1)]"
                           />
                         ))}
                       </div>
                       
-                      <div className="flex justify-between items-center pt-4 border-t border-border/50 text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
-                          Live Validation
+                      <div className="flex justify-between items-center pt-6 border-t border-white/10 text-[10px] font-black uppercase tracking-[0.3em] text-white/60">
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#00ffff]" />
+                          REAL-TIME OPS
                         </div>
-                        <div>2026.REL.V4</div>
+                        <div className="text-primary font-bold">NODE: ARISHA_SEC_01</div>
                       </div>
                     </div>
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-black/40 pointer-events-none" />
+                <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none" />
               </div>
               
-              {/* Floating Metric Card */}
+              {/* Enhanced Floating Metric Card */}
               <motion.div 
-                animate={{ y: [0, -15, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute -bottom-10 -right-10 hidden lg:block glass-card p-8 border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] z-30 rounded-3xl"
+                animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                className="absolute -bottom-12 -right-12 hidden lg:block glass-card p-10 border border-primary/30 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] z-30 rounded-[3rem] bg-black/80 backdrop-blur-2xl"
               >
-                <div className="flex items-center gap-5">
-                  <div className="p-4 bg-primary text-primary-foreground rounded-2xl shadow-lg shadow-primary/20">
-                    <Trophy className="h-8 w-8" />
+                <div className="flex items-center gap-6">
+                  <div className="p-5 bg-primary text-black rounded-2xl shadow-[0_0_25px_rgba(0,255,255,0.4)]">
+                    <Trophy className="h-10 w-10" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-1">Expertise level</div>
-                    <div className="text-2xl font-black tracking-tight">VERIFIED</div>
+                    <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-2">VALIDATION LEVEL</div>
+                    <div className="text-3xl font-black tracking-tight text-white uppercase">TOP TIER</div>
                   </div>
                 </div>
               </motion.div>
