@@ -182,7 +182,7 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
                           }`}>
                             {comp.type === "vulnerability" ? <AlertTriangle className="h-12 w-12 text-red-500" /> :
                              comp.type === "optimization" ? <ShieldCheck className="h-12 w-12 text-green-500" /> :
-                             <Bug className="h-12 w-12 text-blue-500" />}
+                             <BugIcon className="h-12 w-12 text-blue-500" />}
                           </div>
                           <div className={`absolute -top-4 -right-4 px-3 py-1 bg-black border text-[9px] font-black uppercase tracking-[0.3em] rounded-lg ${
                             comp.type === "vulnerability" ? "text-red-500 border-red-500" :
@@ -245,7 +245,7 @@ export function BugHunterGame({ isOpen, onClose }: { isOpen: boolean; onClose: (
   );
 }
 
-function Bug(props: any) {
+function BugIcon(props: any) {
   return (
     <svg
       {...props}
