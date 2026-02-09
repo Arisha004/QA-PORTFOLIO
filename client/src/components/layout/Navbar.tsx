@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Terminal, Menu, X } from "lucide-react";
+import { Terminal, Menu, X, ShieldCheck } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -40,7 +40,7 @@ export function Navbar() {
         <Link href="/">
           <a className="flex items-center gap-2 md:gap-3 group">
             <div className="p-1.5 md:p-2 bg-primary text-black group-hover:rotate-12 transition-transform rounded-lg shadow-[0_0_15px_rgba(0,255,255,0.3)]">
-              <Terminal className="h-4 w-4 md:h-5 md:w-5" />
+              <ShieldCheck className="h-4 w-4 md:h-5 md:h-5" />
             </div>
             <span className="font-display font-black text-xl md:text-2xl tracking-tighter uppercase text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">ARISHA<span className="text-primary">.QA</span></span>
           </a>
@@ -59,7 +59,7 @@ export function Navbar() {
               </a>
             ))}
           </div>
-          <Button variant="outline" className="rounded-none border-primary text-primary font-black text-[10px] tracking-widest uppercase hover:bg-primary hover:text-black px-8">
+          <Button variant="outline" className="rounded-none border-primary text-primary font-black text-[10px] tracking-widest uppercase hover:bg-transparent hover:text-primary px-8">
             CONTACT ME
           </Button>
         </div>
@@ -86,7 +86,7 @@ export function Navbar() {
               {item.name}
             </a>
           ))}
-          <Button className="rounded-none border-primary bg-primary text-black font-black text-[10px] tracking-widest uppercase h-12 w-full hover:bg-white hover:text-black transition-colors">
+          <Button className="rounded-none border-primary bg-primary text-black font-black text-[10px] tracking-widest uppercase h-12 w-full hover:bg-transparent hover:text-primary transition-colors">
             CONTACT ME
           </Button>
         </div>

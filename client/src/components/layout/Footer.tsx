@@ -1,4 +1,4 @@
-import { Terminal, Github, Linkedin, Mail, Send, Shield, Lock, Cpu } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Shield, Lock, Cpu, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -40,7 +40,7 @@ export function Footer() {
           <div className="lg:col-span-5 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-4 mb-10">
               <div className="p-3 bg-primary/20 border border-primary/30 rounded-2xl shadow-[0_0_20px_rgba(0,255,255,0.1)]">
-                <Terminal className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+                <ShieldCheck className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
               <span className="font-display font-black text-3xl md:text-4xl tracking-tighter uppercase text-black">ARISHA<span className="text-primary">.QA</span></span>
             </div>
