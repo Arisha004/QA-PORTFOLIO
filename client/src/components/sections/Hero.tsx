@@ -37,13 +37,13 @@ export function Hero() {
                 Next-Gen Quality Engineering
               </div>
               
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[11rem] font-display font-black leading-[0.75] tracking-tighter mb-10 uppercase text-black">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[8rem] xl:text-[9rem] font-display font-black leading-[0.8] tracking-tighter mb-10 uppercase text-black">
                 ELITE <br className="hidden sm:block" />
                 <span className="text-primary font-outline-2">QUALITY</span> <br className="hidden sm:block" />
                 SYSTEMS.
               </h1>
               
-              <p className="text-lg md:text-2xl text-black mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-black uppercase tracking-tight">
+              <p className="text-lg md:text-2xl text-black/60 mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-bold tracking-tight">
                 Arisha Mumtaz. Redefining software reliability through high-precision validation and advanced test architectures.
               </p>
 
@@ -144,7 +144,7 @@ export function Hero() {
               <motion.div 
                 animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                className="absolute -bottom-12 -right-12 hidden lg:block glass-card p-10 border border-primary/30 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)] z-30 rounded-[3rem] bg-white/80 backdrop-blur-2xl"
+                className="absolute -bottom-12 -right-12 hidden lg:block glass-card p-10 border border-primary/30 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] z-30 rounded-[3rem] bg-white/80 backdrop-blur-2xl"
               >
                 <div className="flex items-center gap-6">
                   <div className="p-5 bg-primary text-white rounded-2xl shadow-[0_0_25px_rgba(0,255,255,0.4)]">
