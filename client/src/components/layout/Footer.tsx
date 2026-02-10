@@ -31,7 +31,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-white text-black py-20 md:py-40 relative overflow-hidden border-t border-black/10">
+    <footer id="contact" className="bg-white text-black py-20 md:py-40 relative overflow-hidden border-t border-black/10">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
       
