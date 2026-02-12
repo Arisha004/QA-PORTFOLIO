@@ -42,8 +42,9 @@ export function Navbar() {
       <div className="container-custom flex items-center justify-between">
         <Link href="/">
           <a className="flex items-center gap-2 md:gap-3 group">
-            <div className="p-1.5 md:p-2 bg-primary text-black group-hover:rotate-12 transition-transform rounded-lg shadow-[0_0_15px_rgba(0,255,255,0.3)]">
-              <ShieldCheck className="h-4 w-4 md:h-5 md:h-5" />
+            <div className="relative p-1.5 md:p-2 bg-primary text-black transition-all duration-500 rounded-xl shadow-[0_0_20px_rgba(0,255,255,0.4)] group-hover:rotate-[360deg] group-hover:scale-110">
+              <ShieldCheck className="h-4 w-4 md:h-6 md:w-6" strokeWidth={2.5} />
+              <div className="absolute inset-0 bg-white/20 rounded-xl animate-pulse" />
             </div>
             <span className={`font-display font-black text-xl md:text-2xl tracking-tighter uppercase transition-colors ${isScrolled || isMobileMenuOpen ? "text-black" : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"}`}>ARISHA<span className="text-primary">.QA</span></span>
           </a>

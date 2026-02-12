@@ -39,7 +39,7 @@ export function Footer() {
             className="text-7xl md:text-[12rem] font-display font-black tracking-tighter mb-20 leading-[0.75] uppercase max-w-5xl"
           >
             LET'S <br />
-            <span className="text-black/5 font-outline-4 hover:text-primary transition-all duration-1000 cursor-default">VALIDATE</span> <br />
+            <span className="text-black/20 font-outline-4 hover:text-primary transition-all duration-1000 cursor-default">VALIDATE</span> <br />
             TOGETHER.
           </motion.h3>
           
