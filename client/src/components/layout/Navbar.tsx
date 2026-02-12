@@ -42,7 +42,7 @@ export function Navbar() {
       <div className="container-custom flex items-center justify-between">
         <Link href="/">
           <a className="flex items-center gap-2 md:gap-3 group">
-            <div className="relative p-1.5 md:p-2 bg-primary text-black transition-all duration-500 rounded-xl shadow-[0_0_20px_rgba(0,255,255,0.4)] group-hover:rotate-[360deg] group-hover:scale-110">
+            <div className="relative p-1.5 md:p-2 bg-primary text-white transition-all duration-500 rounded-xl shadow-[0_0_20px_rgba(0,255,255,0.4)] group-hover:rotate-[360deg] group-hover:scale-110">
               <ShieldCheck className="h-4 w-4 md:h-6 md:w-6" strokeWidth={2.5} />
               <div className="absolute inset-0 bg-white/20 rounded-xl animate-pulse" />
             </div>

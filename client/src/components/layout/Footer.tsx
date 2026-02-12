@@ -24,7 +24,7 @@ export function Footer() {
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               className="p-6 bg-primary/20 border border-primary/30 rounded-[2.5rem] shadow-2xl backdrop-blur-sm"
             >
-              <ShieldCheck className="h-16 w-16 md:h-20 md:w-20 text-primary" strokeWidth={1.5} />
+              <ShieldCheck className="h-16 w-16 md:h-20 md:w-20 text-white" strokeWidth={1.5} />
             </motion.div>
             <span className="font-display font-black text-6xl md:text-9xl tracking-tighter uppercase text-black drop-shadow-2xl">
               ARISHA<span className="text-primary">.QA</span>
