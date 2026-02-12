@@ -18,6 +18,7 @@ export function Navbar() {
     { name: "TESTING TOOLS", href: "/#ai-tools" },
     { name: "PRACTICE LAB", href: "/#playground" },
     { name: "REPORTS", href: "/#performance" },
+    { name: "CONNECT", href: "/#contact" },
   ];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement>, href: string) => {
@@ -64,7 +65,7 @@ export function Navbar() {
           <Button 
             variant="outline" 
             onClick={(e) => scrollToSection(e, "/#contact")}
-            className={`rounded-none border-primary font-black text-[10px] tracking-widest uppercase px-8 transition-all ${isScrolled ? "text-primary hover:bg-primary/10" : "text-primary border-primary hover:bg-primary/10"}`}
+            className={`rounded-none border-primary font-black text-[10px] tracking-widest uppercase px-8 transition-all hidden ${isScrolled ? "text-primary hover:bg-primary/10" : "text-primary border-primary hover:bg-primary/10"}`}
           >
             CONTACT ME
           </Button>
@@ -94,7 +95,7 @@ export function Navbar() {
           ))}
           <Button 
             onClick={(e) => scrollToSection(e, "/#contact")}
-            className="rounded-none border-primary bg-primary text-black font-black text-[10px] tracking-widest uppercase h-12 w-full hover:bg-transparent hover:text-primary transition-colors"
+            className="rounded-none border-primary bg-primary text-black font-black text-[10px] tracking-widest uppercase h-12 w-full hover:bg-transparent hover:text-primary transition-colors hidden"
           >
             CONTACT ME
           </Button>
