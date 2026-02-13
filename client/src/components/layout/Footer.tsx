@@ -4,42 +4,41 @@ import { motion } from "framer-motion";
 
 export function Footer() {
   return (
-    <footer id="contact" className="bg-white text-black py-24 md:py-48 relative overflow-hidden border-t border-black/10">
+    <footer id="contact" className="bg-white text-black py-16 md:py-24 relative overflow-hidden border-t border-black/5">
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
       
       <div className="container-custom relative z-10">
         <div className="flex flex-col items-center text-center">
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center justify-center gap-12 mb-24"
+            className="flex flex-col items-center justify-center gap-6 mb-12"
           >
             <motion.div 
               animate={{ 
                 rotateY: [0, 360],
               }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="p-6 bg-primary/20 border border-primary/30 rounded-[2.5rem] shadow-2xl backdrop-blur-sm"
+              transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+              className="p-4 bg-primary/10 border border-primary/20 rounded-2xl shadow-sm backdrop-blur-sm"
             >
-              <ShieldCheck className="h-16 w-16 md:h-20 md:w-20 text-white" strokeWidth={1.5} />
+              <ShieldCheck className="h-10 w-10 md:h-12 md:w-12 text-primary" strokeWidth={1.5} />
             </motion.div>
-            <span className="font-display font-black text-6xl md:text-9xl tracking-tighter uppercase text-black drop-shadow-2xl">
-              ARISHA<span className="text-primary">.QA</span>
+            <span className="font-display font-black text-4xl md:text-6xl tracking-tighter uppercase text-black">
+              ARISHA<span className="text-primary/60">.QA</span>
             </span>
           </motion.div>
           
           <motion.h3 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-7xl md:text-[12rem] font-display font-black tracking-tighter mb-20 leading-[0.75] uppercase max-w-5xl"
+            className="text-5xl md:text-8xl font-display font-black tracking-tighter mb-12 leading-[0.8] uppercase max-w-4xl"
           >
             LET'S <br />
-            <span className="text-black/20 font-outline-4 hover:text-primary transition-all duration-1000 cursor-default">VALIDATE</span> <br />
+            <span className="text-black/10 font-outline-2 hover:text-primary/40 transition-all duration-700 cursor-default">VALIDATE</span> <br />
             TOGETHER.
           </motion.h3>
           
@@ -48,12 +47,12 @@ export function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="text-black/60 text-2xl md:text-3xl font-bold mb-24 max-w-3xl leading-tight uppercase tracking-[0.2em]"
+            className="text-black/40 text-lg md:text-xl font-bold mb-16 max-w-2xl leading-tight uppercase tracking-[0.2em]"
           >
-            Strategic test architecture and relentless quality pursuit.
+            Strategic test architecture and quality pursuit.
           </motion.p>
           
-          <div className="flex flex-wrap justify-center gap-10 md:gap-14 mb-32">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-20">
              {[
                { icon: Github, href: "https://github.com/arishamumtaz", label: "GitHub" },
                { icon: Linkedin, href: "#", label: "LinkedIn" },
@@ -61,23 +60,19 @@ export function Footer() {
              ].map((social, i) => (
                <motion.a 
                  key={i}
-                 initial={{ opacity: 0, y: 20 }}
+                 initial={{ opacity: 0, y: 10 }}
                  whileInView={{ opacity: 1, y: 0 }}
                  viewport={{ once: true }}
                  transition={{ delay: 0.5 + (i * 0.1) }}
-                 whileHover={{ y: -15, scale: 1.05 }}
+                 whileHover={{ y: -8, scale: 1.05 }}
                  href={social.href} 
                  target={social.href.startsWith('http') ? "_blank" : undefined}
                  rel={social.href.startsWith('http') ? "noopener" : undefined}
                  className="group relative"
                >
-                 <div className="absolute inset-0 bg-primary/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
-                 <div className="relative p-10 bg-black/5 border border-black/10 rounded-[2.5rem] transition-all duration-500 text-black shadow-2xl backdrop-blur-md group-hover:border-primary group-hover:bg-primary group-hover:text-white">
-                   <social.icon className="h-12 w-12 group-hover:rotate-12 transition-transform duration-500" />
+                 <div className="relative p-6 bg-black/5 border border-black/10 rounded-2xl transition-all duration-300 text-black/60 shadow-sm backdrop-blur-md group-hover:border-primary/30 group-hover:bg-primary group-hover:text-white">
+                   <social.icon className="h-7 w-7 group-hover:rotate-6 transition-transform" />
                  </div>
-                 <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] font-black uppercase tracking-[0.4em] opacity-0 group-hover:opacity-100 transition-all duration-500 text-primary">
-                   {social.label}
-                 </span>
                </motion.a>
              ))}
           </div>
@@ -86,29 +81,28 @@ export function Footer() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-8 p-10 bg-black/5 border border-black/10 rounded-[3rem] backdrop-blur-md shadow-2xl border-dashed"
+            className="inline-flex items-center gap-4 p-5 bg-black/[0.02] border border-black/5 rounded-2xl backdrop-blur-sm"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-green-500 rounded-full blur-md animate-pulse" />
-              <div className="relative h-5 w-5 rounded-full bg-green-500 border-2 border-white" />
+              <div className="h-3 w-3 rounded-full bg-green-500/80 animate-pulse" />
             </div>
-            <span className="text-sm font-black uppercase tracking-[0.5em] text-black/90">Systems Online: Accepting New Projects</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">Accepting Projects</span>
           </motion.div>
         </div>
         
-        <div className="mt-48 pt-20 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-16">
-          <div className="text-[10px] font-black uppercase tracking-[0.8em] text-black/30">
-            © {new Date().getFullYear()} ARISHA MUMTAZ — ARCHITECTING QUALITY
+        <div className="mt-24 pt-10 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-[9px] font-black uppercase tracking-[0.5em] text-black/20 text-center md:text-left">
+            © {new Date().getFullYear()} ARISHA MUMTAZ
           </div>
           
-          <div className="flex flex-wrap justify-center gap-12 md:gap-24">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12">
             {[
               { name: "Privacy", href: "/privacy", icon: Shield },
               { name: "Security", href: "/security", icon: Lock },
               { name: "System", href: "/system", icon: Cpu }
             ].map((link, i) => (
-              <Link key={i} href={link.href} className="text-[10px] font-black uppercase tracking-[0.5em] text-black hover:text-primary transition-all flex items-center gap-5 group">
-                <link.icon className="h-6 w-6 opacity-40 group-hover:opacity-100 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500" />
+              <Link key={i} href={link.href} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40 hover:text-primary transition-all flex items-center gap-3 group">
+                <link.icon className="h-4 w-4 opacity-30 group-hover:opacity-100 transition-all" />
                 {link.name}
               </Link>
             ))}

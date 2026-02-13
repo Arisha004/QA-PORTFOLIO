@@ -34,46 +34,46 @@ export function Navbar() {
       }
     } else {
       window.location.href = href;
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-white/20 backdrop-blur-md border-b border-black/10 py-4 shadow-sm" : "py-6 md:py-8"}`}>
-      <div className="container-custom flex items-center justify-between">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-white/95 backdrop-blur-md border-b border-black/10 py-3 shadow-sm" : "py-5 md:py-6 bg-white/50 backdrop-blur-sm"}`}>
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+        style={{ 
+          backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }} 
+      />
+      <div className="container-custom relative flex items-center justify-between">
         <Link href="/">
-          <a className="flex items-center gap-2 md:gap-3 group">
-            <div className="relative p-1.5 md:p-2 bg-primary text-white transition-all duration-500 rounded-xl shadow-[0_0_20px_rgba(0,255,255,0.4)] group-hover:rotate-[360deg] group-hover:scale-110">
-              <ShieldCheck className="h-4 w-4 md:h-6 md:w-6" strokeWidth={2.5} />
-              <div className="absolute inset-0 bg-white/20 rounded-xl animate-pulse" />
+          <a className="flex items-center gap-2 md:gap-3 group" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <div className="relative p-1.5 md:p-2 bg-primary text-white transition-all duration-500 rounded-xl shadow-[0_0_15px_rgba(0,0,0,0.1)] group-hover:rotate-[360deg] group-hover:scale-110">
+              <ShieldCheck className="h-4 w-4 md:h-5 md:w-5" strokeWidth={2.5} />
+              <div className="absolute inset-0 bg-white/10 rounded-xl animate-pulse" />
             </div>
-            <span className={`font-display font-black text-xl md:text-2xl tracking-tighter uppercase transition-colors ${isScrolled || isMobileMenuOpen ? "text-black" : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"}`}>ARISHA<span className="text-primary">.QA</span></span>
+            <span className={`font-display font-black text-lg md:text-xl tracking-tighter uppercase transition-colors text-black`}>ARISHA<span className="text-primary/60">.QA</span></span>
           </a>
         </Link>
         
-        <div className="hidden lg:flex items-center gap-12">
-          <div className="flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-10">
+          <div className="flex items-center gap-6">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className={`text-[10px] font-black tracking-[0.2em] uppercase transition-colors hover:text-primary ${isScrolled ? "text-black" : "text-white drop-shadow-sm"}`}
+                className={`text-[9px] font-black tracking-[0.2em] uppercase transition-colors hover:text-primary text-black/70`}
               >
                 {item.name}
               </a>
             ))}
           </div>
-          <Button 
-            variant="outline" 
-            onClick={(e) => scrollToSection(e, "/#contact")}
-            className={`rounded-none border-primary font-black text-[10px] tracking-widest uppercase px-8 transition-all hidden ${isScrolled ? "text-primary hover:bg-primary/10" : "text-primary border-primary hover:bg-primary/10"}`}
-          >
-            CONTACT ME
-          </Button>
         </div>
 
         <button 
-          className={`lg:hidden p-2 transition-colors ${isScrolled || isMobileMenuOpen ? "text-black" : "text-white"}`} 
+          className={`lg:hidden p-2 transition-colors text-black`} 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -94,12 +94,6 @@ export function Navbar() {
               {item.name}
             </a>
           ))}
-          <Button 
-            onClick={(e) => scrollToSection(e, "/#contact")}
-            className="rounded-none border-primary bg-primary text-black font-black text-[10px] tracking-widest uppercase h-12 w-full hover:bg-transparent hover:text-primary transition-colors hidden"
-          >
-            CONTACT ME
-          </Button>
         </div>
       </div>
     </nav>
