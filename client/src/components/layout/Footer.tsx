@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function Footer() {
   return (
-    <footer id="contact" className="bg-white text-black py-16 md:py-24 relative overflow-hidden border-t border-black/5">
+    <footer id="contact" className="bg-white text-black py-16 md:py-24 relative overflow-hidden border-t border-black/10">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
       
@@ -35,7 +35,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-5xl md:text-8xl font-display font-black tracking-tighter mb-12 leading-[0.8] uppercase max-w-4xl"
+            className="text-5xl md:text-8xl font-display font-black tracking-tighter mb-12 leading-[0.8] uppercase max-w-4xl text-black"
           >
             LET'S <br />
             <span className="text-black/10 font-outline-2 hover:text-primary/40 transition-all duration-700 cursor-default">VALIDATE</span> <br />
@@ -47,7 +47,7 @@ export function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="text-black/40 text-lg md:text-xl font-bold mb-16 max-w-2xl leading-tight uppercase tracking-[0.2em]"
+            className="text-black/70 text-lg md:text-xl font-bold mb-16 max-w-2xl leading-tight uppercase tracking-[0.2em]"
           >
             Strategic test architecture and quality pursuit.
           </motion.p>
@@ -70,7 +70,7 @@ export function Footer() {
                  rel={social.href.startsWith('http') ? "noopener" : undefined}
                  className="group relative"
                >
-                 <div className="relative p-6 bg-black/5 border border-black/10 rounded-2xl transition-all duration-300 text-black/60 shadow-sm backdrop-blur-md group-hover:border-primary/30 group-hover:bg-primary group-hover:text-white">
+                 <div className="relative p-6 bg-black/5 border border-black/10 rounded-2xl transition-all duration-300 text-black/80 shadow-sm backdrop-blur-md group-hover:border-primary/30 group-hover:bg-primary group-hover:text-white">
                    <social.icon className="h-7 w-7 group-hover:rotate-6 transition-transform" />
                  </div>
                </motion.a>
@@ -81,17 +81,17 @@ export function Footer() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-4 p-5 bg-black/[0.02] border border-black/5 rounded-2xl backdrop-blur-sm"
+            className="inline-flex items-center gap-4 p-5 bg-black/[0.05] border border-black/10 rounded-2xl backdrop-blur-sm"
           >
             <div className="relative">
-              <div className="h-3 w-3 rounded-full bg-green-500/80 animate-pulse" />
+              <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">Accepting Projects</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/70">Accepting Projects</span>
           </motion.div>
         </div>
         
-        <div className="mt-24 pt-10 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="text-[9px] font-black uppercase tracking-[0.5em] text-black/20 text-center md:text-left">
+        <div className="mt-24 pt-10 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-[9px] font-black uppercase tracking-[0.5em] text-black/60 text-center md:text-left">
             © {new Date().getFullYear()} ARISHA MUMTAZ
           </div>
           
@@ -101,8 +101,8 @@ export function Footer() {
               { name: "Security", href: "/security", icon: Lock },
               { name: "System", href: "/system", icon: Cpu }
             ].map((link, i) => (
-              <Link key={i} href={link.href} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40 hover:text-primary transition-all flex items-center gap-3 group">
-                <link.icon className="h-4 w-4 opacity-30 group-hover:opacity-100 transition-all" />
+              <Link key={i} href={link.href} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-[9px] font-black uppercase tracking-[0.4em] text-black/70 hover:text-primary transition-all flex items-center gap-3 group">
+                <link.icon className="h-4 w-4 opacity-60 group-hover:opacity-100 transition-all" />
                 {link.name}
               </Link>
             ))}
