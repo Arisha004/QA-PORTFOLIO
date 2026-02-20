@@ -56,4 +56,3 @@ $env:NODE_ENV = 'production'; node dist/index.cjs
 - Static/server code: [server](QA-PORTFOLIO/server)
 - Client app: [QA-PORTFOLIO/client](QA-PORTFOLIO/client) (Vite + React)
 
-If you want, I can also add a `README.md` inside [QA-PORTFOLIO](QA-PORTFOLIO) with more project-specific details and environment variable guidance.
