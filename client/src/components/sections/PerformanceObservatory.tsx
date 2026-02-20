@@ -34,11 +34,11 @@ export function PerformanceObservatory() {
               <span className="text-muted-foreground/40">Reports</span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground font-medium leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
-              I use tools like Google Lighthouse and Browser DevTools to track the quality of my practice projects. This data helps me understand how to build better software.
+              I use tools like Lighthouse and Browser DevTools to track the quality of my practice projects. This data helps me understand how to build better software.
             </p>
             
             <div className="space-y-4 max-w-md mx-auto lg:mx-0">
-               {["Performance Audit", "Accessibility Check", "SEO Best Practices"].map(item => (
+               {["Performance Audit", "Accessibility Check", "Best Practices"].map(item => (
                  <div key={item} className="flex items-center gap-4 p-4 border border-border bg-background text-left">
                     <div className="h-2 w-2 bg-primary rounded-full"></div>
                     <span className="text-[10px] font-black uppercase tracking-widest">{item}</span>

@@ -1,54 +1,54 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Briefcase, Calendar, Award, CheckCircle2, Zap } from "lucide-react";
-
 const experience = [
   {
-    type: "Career Launch",
-    title: "QA Engineering Specialist",
-    provider: "Elite QA Systems",
+    type: "Professional Experience",
+    title: "QA Engineer & Designer",
+    provider: "Ally Solutions",
     date: "2024 - Present",
-    description: "Architecting robust test strategies for high-precision validation. Specialized in manual testing lifecycle, detailed bug documentation, and cross-functional quality syncs.",
+    description: "Serving as a QA Engineer and Designer, executing structured manual and automation testing workflows. Writing detailed test cases with step-by-step validation, reporting reproducible defects in Jira, recording bug demonstration videos for developers, and ensuring high-quality software releases through cross-functional collaboration.",
     icon: Zap,
-    skills: ["Test Strategy", "Agile QA", "Defect Management"]
+    skills: ["Manual Testing", "Jira", "Test Case Writing", "Defect Reporting", "Agile Workflow"]
   },
   {
-    type: "Learning Journey",
-    title: "Advanced Manual Testing Lab",
-    provider: "Professional Certification Path",
-    date: "2023 - 2024",
-    description: "Mastered the art of exploratory testing and rigorous edge-case analysis. Successfully identified and documented critical vulnerabilities in complex web infrastructures.",
+    type: "Internship",
+    title: "QA Intern",
+    provider: "10Pearls – Shine Internship Program",
+    date: "2023",
+    description: "Selected for the Shine Internship Program powered by 10Pearls, gaining hands-on exposure to real-world software quality assurance practices. Performed functional and exploratory testing, created structured test documentation, validated user flows, and strengthened understanding of enterprise-level QA processes.",
     icon: GraduationCap,
-    skills: ["UAT", "STLC", "Bug Reporting"]
+    skills: ["Functional Testing", "Exploratory Testing", "STLC", "Bug Documentation"]
   }
 ];
 
+
 const courses = [
   {
-    title: "Enterprise Quality Architecture",
-    platform: "Certification",
-    status: "Verified",
-    id: "QA-999-X",
+    title: "AI in Software Testing",
+    platform: "Professional Certification",
+    status: "Completed",
+    id: "AI-QA-2024",
     color: "bg-primary"
   },
   {
-    title: "Software Reliability Foundations",
-    platform: "Coursera",
+    title: "Shine Internship Program – 10Pearls",
+    platform: "Internship Program",
     status: "Completed",
-    id: "REL-2024",
+    id: "SIP-10P",
     color: "bg-green-500"
   },
   {
-    title: "Manual Test Case Design Elite",
-    platform: "LinkedIn Learning",
+    title: "Automation Testing with Cypress & Playwright",
+    platform: "Practical Implementation",
     status: "Completed",
-    id: "DES-456",
+    id: "AUTO-CP",
     color: "bg-primary"
   },
   {
-    title: "Modern Security Protocols",
-    platform: "Udemy",
-    status: "In Progress",
-    id: "SEC-789",
+    title: "Test Management & Defect Tracking (Jira & Test Worthy)",
+    platform: "Hands-on Practice",
+    status: "Active Use",
+    id: "QA-TM-01",
     color: "bg-yellow-500"
   }
 ];

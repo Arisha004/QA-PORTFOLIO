@@ -11,7 +11,7 @@ const steps = [
     year: "Step 2",
     title: "SQL & API Verification",
     description: "Moved beyond the UI to verify data integrity and API responses directly.",
-    skills: ["Postman", "MySQL", "REST APIs"]
+    skills: ["Postman", "MySQL", "Request"]
   },
   {
     year: "Step 3",

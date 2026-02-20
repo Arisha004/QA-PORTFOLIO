@@ -1,40 +1,48 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Terminal, Search, Sparkles, ShieldCheck, Cpu, Code2 } from "lucide-react";
+import { ArrowRight, ShieldCheck, Zap, Database, Globe, Layers } from "lucide-react";
 
 const cases = [
   {
-    title: "High-Precision Authentication Validation",
-    description: "Architected a comprehensive test suite for enterprise-level login flows. Meticulously identified 15+ edge cases including polymorphic input vulnerabilities and session synchronization anomalies.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-    tags: ["System Architecture", "Security Audit", "UX Validation"],
-    stats: [
-      { label: "Scenarios", value: "48+" },
-      { label: "Coverage", value: "100%" },
-      { label: "Complexity", value: "Elite" }
-    ],
-    icon: ShieldCheck
+    title: "Cypress Automation Framework",
+    description: "Architected a high-performance end-to-end testing suite with intelligent wait strategies and custom commands.",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+    tags: ["Cypress","JavaScript"],
+    icon: Globe,
+    link: "https://github.com/Arisha004/Cypress-Automation-Assignment"
   },
   {
-    title: "Global Infrastructure Bug Documentation",
-    description: "Engineered a next-gen defect reporting protocol. Streamlined communication between dev and QA teams by implementing high-fidelity visual documentation and multi-layered reproduction steps.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
-    tags: ["Strategic Reporting", "Defect Lifecycle", "Team Ops"],
-    stats: [
-      { label: "Clarity", value: "Absolute" },
-      { label: "MTTR", value: "-40%" },
-      { label: "Efficiency", value: "Peak" }
-    ],
-    icon: Terminal
+    title: "JMeter API Performance",
+    description: "Perfomed high-concurrency load testing protocols to validate system stability under extreme traffic spikes.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    tags: ["JMeter", "Performance", "Load"],
+    icon: Zap,
+    link: "https://github.com/Arisha004/Jmeter-api-testing-assignment"
+  },
+  {
+    title: "Postman API Validation",
+    description: "Developed a comprehensive API contract testing suite for multi-environment data validation.",
+    image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?q=80&w=2066&auto=format&fit=crop",
+    tags: ["Postman", "Testing"],
+    icon: Database,
+    link: "https://github.com/Arisha004/Postman_Assignment4"
+  },
+  {
+    title: "SauceDemo SQA Blueprint",
+    description: "Executed a full-lifecycle SQA project with high-fidelity test plans and rigorous manual suites.",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
+    tags: ["Manual QA", "Test Plans", "Test Cases"],
+    icon: ShieldCheck,
+    link: "https://github.com/Arisha004/saucedemo-qa-testing"
   }
 ];
 
 export function CaseStudies() {
   return (
-    <section className="section-padding bg-white relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-white relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-32 gap-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-12">
           <div className="max-w-3xl">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
@@ -43,68 +51,65 @@ export function CaseStudies() {
               className="inline-flex items-center gap-4 mb-8"
             >
               <div className="h-px w-12 bg-primary"></div>
-              <span className="text-xs font-black uppercase tracking-[0.5em] text-primary">Strategic Validations</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary">Strategic Validations</span>
             </motion.div>
-            <h2 className="text-6xl md:text-9xl font-display font-black tracking-tighter uppercase leading-[0.8] mb-10">
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-display font-black tracking-tighter uppercase leading-[0.8] mb-10 text-black">
               ELITE <br />
-              <span className="text-black/10 font-outline-4">OPERATIONS.</span>
+              <span className="text-black/10 font-outline-2">PROJECTS.</span>
             </h2>
           </div>
-          <p className="text-black/60 text-xl font-bold max-w-md leading-tight uppercase tracking-widest border-l-4 border-primary pl-10 py-4">
-            Translating complex system requirements into flawless user experiences through relentless testing.
+          <p className="text-black/60 text-lg md:text-xl font-bold max-w-md leading-tight uppercase tracking-widest border-l-4 border-primary pl-10 py-4 text-left">
+            Translating complex system requirements into flawless user experiences.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           {cases.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative"
+              className="group"
             >
-              <div className="relative bg-black/5 border border-black/10 rounded-[4rem] overflow-hidden transition-all duration-700 h-full flex flex-col hover:border-primary/50 hover:bg-white hover:shadow-2xl">
-                <div className="aspect-[16/10] overflow-hidden relative">
+              <div className="relative bg-[#fafafa] border border-black/5 rounded-[2rem] overflow-hidden transition-all duration-500 h-full flex flex-col hover:shadow-2xl hover:border-primary/20">
+                <div className="aspect-[16/9] overflow-hidden relative">
                   <motion.img 
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 opacity-40 group-hover:opacity-100"
+                    className="w-full h-full object-cover transition-all duration-1000 grayscale group-hover:grayscale-0 opacity-80"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
                   
-                  <div className="absolute top-10 left-10 z-20 flex flex-wrap gap-4">
+                  <div className="absolute top-6 left-6 z-20 flex flex-wrap gap-2">
                     {project.tags.map(tag => (
-                      <span key={tag} className="px-5 py-2 bg-white/10 backdrop-blur-xl border border-white/20 text-[10px] uppercase font-black tracking-[0.3em] text-white rounded-full">
+                      <span key={tag} className="px-3 py-1 bg-white/90 backdrop-blur-md border border-black/5 text-[8px] uppercase font-black tracking-widest text-black rounded-full">
                         {tag}
                       </span>
                     ))}
                   </div>
-
-                  <div className="absolute bottom-10 left-10 z-20 opacity-0 group-hover:opacity-100 transition-all translate-y-10 group-hover:translate-y-0 duration-700">
-                    <project.icon className="h-16 w-16 text-primary" strokeWidth={1} />
-                  </div>
                 </div>
 
-                <div className="p-12 md:p-16 flex-1 flex flex-col">
-                  <h3 className="text-3xl md:text-5xl font-display font-black mb-8 uppercase tracking-tighter leading-none">{project.title}</h3>
-                  <p className="text-black/60 text-lg mb-12 flex-1 leading-relaxed font-bold uppercase tracking-tight">{project.description}</p>
-
-                  <div className="grid grid-cols-3 gap-10 mb-12 py-10 border-y border-black/10">
-                    {project.stats.map((stat, i) => (
-                      <div key={i} className="text-center md:text-left">
-                        <div className="text-[10px] font-black text-black/40 uppercase tracking-[0.4em] mb-2">{stat.label}</div>
-                        <div className="text-2xl font-black font-display text-black">{stat.value}</div>
-                      </div>
-                    ))}
+                <div className="p-10 flex-1 flex flex-col text-left">
+                  <div className="flex items-start justify-between mb-6">
+                    <h3 className="text-2xl font-display font-black uppercase tracking-tight leading-none text-black">{project.title}</h3>
+                    <project.icon className="h-6 w-6 text-primary shrink-0 ml-4" />
                   </div>
+                  
+                  <p className="text-black/60 text-sm mb-10 flex-1 leading-relaxed font-bold uppercase tracking-tight">
+                    {project.description}
+                  </p>
 
-                  <Button variant="outline" className="w-full group/btn hover:bg-primary hover:text-white justify-between rounded-[2rem] h-20 border-black transition-all duration-500">
-                    <span className="text-xs font-black uppercase tracking-[0.4em] ml-6">Access Validation Report</span>
-                    <ArrowRight className="h-6 w-6 mr-6 transition-transform group-hover/btn:translate-x-3" />
-                  </Button>
+                 
+
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="block mt-auto">
+                    <Button variant="outline" className="w-full group/btn hover:bg-black hover:text-white justify-between rounded-xl h-14 border-black/10 transition-all duration-300">
+                      <span className="text-[10px] font-black uppercase tracking-widest">GITHUB ARCHIVE</span>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-2" />
+                    </Button>
+                  </a>
                 </div>
               </div>
             </motion.div>
