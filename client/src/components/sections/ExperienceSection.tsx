@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Briefcase, Calendar, Award, CheckCircle2, Zap } from "lucide-react";
+
 const experience = [
   {
     type: "Professional Experience",
     title: "QA Engineer & Designer",
     provider: "Ally Solutions",
-    date: "2024 - Present",
+    date: "2026 - Present",
     description: "Serving as a QA Engineer and Designer, executing structured manual and automation testing workflows. Writing detailed test cases with step-by-step validation, reporting reproducible defects in Jira, recording bug demonstration videos for developers, and ensuring high-quality software releases through cross-functional collaboration.",
     icon: Zap,
     skills: ["Manual Testing", "Jira", "Test Case Writing", "Defect Reporting", "Agile Workflow"]
@@ -14,13 +15,12 @@ const experience = [
     type: "Internship",
     title: "QA Intern",
     provider: "10Pearls – Shine Internship Program",
-    date: "2023",
+    date: "2025",
     description: "Selected for the Shine Internship Program powered by 10Pearls, gaining hands-on exposure to real-world software quality assurance practices. Performed functional and exploratory testing, created structured test documentation, validated user flows, and strengthened understanding of enterprise-level QA processes.",
     icon: GraduationCap,
     skills: ["Functional Testing", "Exploratory Testing", "STLC", "Bug Documentation"]
   }
 ];
-
 
 const courses = [
   {
@@ -105,7 +105,8 @@ export function ExperienceSection() {
                     <span className="flex items-center gap-2"><Calendar className="h-3 w-3" /> {item.date}</span>
                   </div>
                   
-                  <p className="text-lg text-black/60 font-medium leading-relaxed mb-8 max-w-xl uppercase tracking-tight">
+                  {/* UPDATED: Normal sentence casing */}
+                  <p className="text-lg text-black/60 font-medium leading-relaxed mb-8 max-w-xl">
                     {item.description}
                   </p>
 
