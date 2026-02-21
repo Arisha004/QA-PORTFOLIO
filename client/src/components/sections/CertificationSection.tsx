@@ -44,8 +44,17 @@ export function CertificationSection() {
 
 
             {/* SIMPLE RECRUITER WORDING */}
-            <p className="text-black/60 text-xl font-bold max-w-xl leading-tight 
-            uppercase tracking-widest border-l-4 border-primary pl-8 py-2 text-left">
+          <p className="mt-6 text-sm font-bold text-black/60">
+  Instructor:{" "}
+  <a 
+    href="https://www.linkedin.com/in/imahmedhassan/" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="text-primary hover:underline"
+  >
+    Ahmed Hassan
+  </a>{" "} 
+  (LinkedIn Certified Trainer)
 
               Completed certification in AI tools for Software Testing.  
               Learned how to generate test cases faster, detect bugs early,
@@ -53,11 +62,6 @@ export function CertificationSection() {
 
             </p>
 
-
-            {/* instructor trust line */}
-            <p className="mt-6 text-sm font-bold text-black/60">
-              Instructor: Ahmed Hassan (LinkedIn Certified Trainer)
-            </p>
 
 
             {/* RECRUITER SEARCH KEYWORDS */}
