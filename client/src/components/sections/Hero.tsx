@@ -103,7 +103,7 @@ export function Hero() {
               >
                 <div className="absolute inset-0 p-10 md:p-14 flex flex-col justify-between z-20">
                     <div className="flex justify-between items-start">
-                      <div className="p-5 bg-primary rounded-3xl border border-black/10 shadow-[0_0_30px_rgba(0,255,255,0.4)]">
+                      <div className="p-5 bg-primary rounded-3xl border mb-4 border-black/10 shadow-[0_0_30px_rgba(0,255,255,0.4)]">
                         <ShieldCheck className="h-10 w-10 text-white" strokeWidth={2} />
                       </div>
                       <div className="text-right">
