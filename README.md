@@ -1,58 +1,84 @@
 
-# QA-PORTFOLIO
+# Arisha Mumtaz — QA Portfolio
 
-Lightweight portfolio + server project. This README lists the basic commands to install, run, build, and check the project.
+[![Portfolio Live](https://img.shields.io/badge/Portfolio-Live-green)](https://arishaqaportfolio.netlify.app/)
 
-**Prerequisites**
-- Node.js (recommended >= 18)
-- npm (or a compatible package manager)
+This is my professional **QA Portfolio**, showcasing my skills, projects, and experience in **quality assurance**, manual testing, test case writing, bug documentation, and introductory automation.
 
-**Quick Start**
-1. Open a terminal and change into the project folder:
+## Table of Contents
 
-```bash
-cd QA-PORTFOLIO
-```
+* [About](#about)
+* [Skills & Learning](#skills--learning)
+* [Professional Experience](#professional-experience)
+* [Certifications & Courses](#certifications--courses)
+* [Projects](#projects)
+* [Contact](#contact)
 
-2. Install dependencies:
+---
 
-```bash
-npm install
-```
+## About
 
-3. Development (run server in development mode):
+I am **Arisha Mumtaz**, a QA engineer and front-end developer focused on **high-precision validation and software reliability**. I combine **manual testing, test case creation, defect reporting, and basic automation** to deliver reliable, well-tested software.
 
-```bash
-npm run dev
-```
+My portfolio highlights my workflow, learning journey, and contributions to QA projects and client solutions.
 
-4. Build the project for production:
+---
 
-```bash
-npm run build
-```
+## Skills & Learning
 
-5. Start the production build:
+Currently building strong foundations in **QA and software testing**:
 
-```bash
-npm run start
-```
+* **Manual Testing:** Writing structured test cases, functional and exploratory testing
+* **Bug Documentation:** Clear, reproducible defect reporting
+* **Automation (Beginner):** Python basics for writing test scripts
+* **Quality Checks:** Accessibility, performance, and UI validations
+* **Tools in Use:** Jira, Playwright, Cypress, React Testing Library, Git
 
-Notes:
-- `npm run dev` uses `tsx server/index.ts` and sets `NODE_ENV=development`.
-- `npm run build` runs the build script (`script/build.ts`) which prepares the `dist` output used by `npm run start`.
-- On some Windows shells the `start` script's `NODE_ENV=production` assignment may not be applied; if `npm run start` fails to set the environment, try running in PowerShell:
+---
 
-```powershell
-$env:NODE_ENV = 'production'; node dist/index.cjs
-```
+## Professional Experience
 
-**Other useful scripts**
-- `npm run check` — run TypeScript type checks (`tsc`).
-- `npm run db:push` — run Drizzle DB push (`drizzle-kit push`).
+### QA Engineer & Designer — Ally Solutions 
 
-**Where to look**
-- Server entry: [server/index.ts](QA-PORTFOLIO/server/index.ts)
-- Static/server code: [server](QA-PORTFOLIO/server)
-- Client app: [QA-PORTFOLIO/client](QA-PORTFOLIO/client) (Vite + React)
+* Executing **manual and automation testing workflows**
+* Writing detailed **test cases** and documenting bugs
+* Recording bug demonstration videos for developers
+* Ensuring high-quality software releases via **cross-functional collaboration**
+* **Skills:** Manual Testing, Jira, Test Case Writing, Defect Reporting, Agile Workflow
+
+### QA Intern — 10Pearls, Shine Internship Program
+
+* Gained hands-on exposure to real-world QA practices
+* Performed **functional and exploratory testing**
+* Created structured **test documentation**
+* Strengthened understanding of enterprise QA processes
+* **Skills:** Functional Testing, Exploratory Testing, STLC, Bug Documentation
+
+---
+
+## Certifications & Courses
+
+* **AI in Software Testing** — Professional Certification (Completed)
+* **Shine Internship Program – 10Pearls** — Internship Program (Completed)
+* **Automation Testing with Cypress & Playwright** — Practical Implementation (Completed)
+* **Test Management & Defect Tracking (Jira & Test Worthy)** — Hands-on Practice (Active Use)
+
+---
+
+## Projects
+
+My portfolio highlights various projects where I applied QA principles:
+
+* Writing **test cases** for web applications
+* Documenting and reporting **bugs and issues** clearly
+* Practicing **manual analysis** using browser tools
+* Exploring **automation scripts** in Python
+
+You can view live demos and project details here: [Portfolio Website](https://arishaqaportfolio.netlify.app/)
+
+## Contact
+
+* **LinkedIn:** [Arisha Mumtaz](https://www.linkedin.com/in/arisha-mumtaz-788b16288/)
+* **Email:** [arishamumtaz340@gmail.com](mailto:arishamumtaz340@gmail.com)
+
 
