@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { 
   Carousel, 
   CarouselContent, 
@@ -33,11 +34,27 @@ const images = [
 ];
 
 export function InternshipShowcase() {
+
+  /* ACTIVE INDEX FOR DOTS + GLOW */
+  const [active, setActive] = useState(0);
+
+  /* SLOW AUTO CINEMATIC SCROLL */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive(prev => (prev + 1) % images.length);
+    }, 4500);   // slow cinematic timing
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="container-custom">
+
+        {/* HEADER — unchanged */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
           <div className="max-w-3xl">
+
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -65,7 +82,7 @@ export function InternshipShowcase() {
 
               <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-black/40">
                 <Calendar className="h-3 w-3" />
-                Sep 2025-Nov 2025
+                2025-2026
               </div>
             </div>
 
@@ -75,6 +92,7 @@ export function InternshipShowcase() {
           </div>
         </div>
 
+        {/* CAROUSEL */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -82,30 +100,37 @@ export function InternshipShowcase() {
           transition={{ duration: 0.8 }}
           className="relative px-12"
         >
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
+
+          {/* MOBILE SWIPE HINT */}
+          <div className="md:hidden text-center mb-4 text-[10px] font-black tracking-widest text-black/40 animate-pulse">
+            ← SWIPE →
+          </div>
+
+          <Carousel opts={{ align:"start", loop:true }} className="w-full">
+
             <CarouselContent className="-ml-4">
               {images.map((img, index) => (
+
                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="group relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-black/5 border border-black/5">
+
+                  {/* ACTIVE GLOW */}
+                  <div className={`group relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-black/5 border border-black/5 transition-all duration-500 
+                  ${active===index ? "ring-4 ring-primary/40 shadow-2xl scale-[1.02]" : ""}`}>
+
                     <img 
-                      src={img.url} 
+                      src={img.url}
                       alt={img.title}
                       className="h-full w-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
                     />
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                    
+
                     <div className="absolute bottom-0 left-0 p-8 w-full text-left">
+
                       <div className="flex items-center gap-2 mb-3">
                         <div className="h-1 w-8 bg-primary rounded-full" />
                         <span className="text-[10px] font-black text-white uppercase tracking-[0.3em]">
-                          Phase 0{index + 1}
+                          Phase 0{index+1}
                         </span>
                       </div>
 
@@ -116,17 +141,29 @@ export function InternshipShowcase() {
                       <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest leading-relaxed">
                         {img.caption}
                       </p>
+
                     </div>
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
 
-            {/* NOW VISIBLE ON MOBILE ALSO */}
-            <CarouselPrevious className="-left-2 md:-left-4 h-10 w-10 md:h-14 md:w-14 rounded-2xl border-black/10 bg-white text-black hover:bg-black hover:text-white transition-all shadow-xl" />
-            <CarouselNext className="-right-2 md:-right-4 h-10 w-10 md:h-14 md:w-14 rounded-2xl border-black/10 bg-white text-black hover:bg-black hover:text-white transition-all shadow-xl" />
+            {/* MOBILE + DESKTOP ARROWS */}
+            <CarouselPrevious className="-left-2 md:-left-4 h-10 w-10 md:h-14 md:w-14 rounded-2xl border-black/10 bg-white text-black hover:bg-black hover:text-white shadow-xl"/>
+            <CarouselNext className="-right-2 md:-right-4 h-10 w-10 md:h-14 md:w-14 rounded-2xl border-black/10 bg-white text-black hover:bg-black hover:text-white shadow-xl"/>
 
           </Carousel>
+
+          {/* PROGRESS DOTS */}
+          <div className="flex justify-center gap-3 mt-8">
+            {images.map((_,i)=>(
+              <div key={i}
+                className={`h-2 rounded-full transition-all duration-500 
+                ${active===i ? "w-10 bg-primary shadow-lg" : "w-2 bg-black/20"}`}
+              />
+            ))}
+          </div>
+
         </motion.div>
       </div>
     </section>
