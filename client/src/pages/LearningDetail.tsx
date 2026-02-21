@@ -51,7 +51,7 @@ export default function LearningDetail() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
 
             {/* Responsive title scaling ONLY */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-display font-black tracking-tighter uppercase mb-6 sm:mb-8 leading-tight break-words">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-display font-black tracking-tighter uppercase mb-6 sm:mb-8 leading-tight break-words">
               {data.title.split(' ')[0]}
               <span className="text-primary">
                 .{data.title.split(' ')[1] || 'LOG'}
