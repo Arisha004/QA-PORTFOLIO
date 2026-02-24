@@ -141,7 +141,7 @@ export function Hero() {
                       <div className="flex justify-between items-center pt-6 border-t border-black/10 text-[10px] font-black uppercase tracking-[0.3em] text-black/60">
                         <div className="flex items-center gap-3">
                           <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
-                          REAL-TIME OPS
+                           SQA
                         </div>
                         <div className="text-primary font-bold">NODE: ARISHA_SEC_01</div>
                       </div>
