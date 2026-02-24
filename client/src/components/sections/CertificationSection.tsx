@@ -64,6 +64,36 @@ const certs = [
     { title: "Test Execution", desc: "Planned & tracked execution cycles" },
     { title: "Defect Reporting", desc: "Clear severity & priority tagging" }
   ]
+},
+  {
+  id: "10p-shine-internship",
+  title: "QA Fullstack Internship",
+  certificateLink: "/assets/10pshine.jpg",
+  provider: "10Pearls",
+  badge: "10P Shine Intern 2025",
+  instructor: "Maheen Sumera Alavi",
+  description: "Successfully completed the 10P Shine Internship Program 2025 in QA Fullstack domain. Gained practical exposure to real-world software testing workflows, cross-functional collaboration, and enterprise-level quality assurance practices.",
+  highlights: [
+    { title: "QA Fullstack Exposure", desc: "Frontend & backend validation" },
+    { title: "Industry Workflow", desc: "Agile sprint collaboration" },
+    { title: "Enterprise Testing", desc: "Real project validation" },
+    { title: "Professional Growth", desc: "Structured QA execution" }
+  ]
+},
+  {
+  id: "szabist-merit-scholarship",
+  title: "Merit Scholarship 1st Position",
+  certificateLink: "/assets/scholarship.jpg",
+  provider: "SZABIST",
+  badge: "Academic Excellence Award",
+  instructor: "Vice President Academics",
+  description: "Awarded Merit Scholarship – 1st Position for outstanding academic performance in BSCS III G. Recognized for academic excellence, consistency, and top ranking performance in the semester.",
+  highlights: [
+    { title: "1st Position", desc: "Top of BSCS III G" },
+    { title: "Academic Excellence", desc: "High GPA performance" },
+    { title: "Merit Recognition", desc: "Official scholarship award" },
+    { title: "Consistent Achievement", desc: "Strong academic standing" }
+  ]
 }
 ];
 
