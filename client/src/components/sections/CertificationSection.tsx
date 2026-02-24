@@ -68,7 +68,7 @@ const certs = [
   {
   id: "10p-shine-internship",
   title: "QA Fullstack Internship",
-  certificateLink: "/assets/10pshine.jpg",
+  certificateLink: "/assets/10pshine.jpeg",
   provider: "10Pearls",
   badge: "10P Shine Intern 2025",
   instructor: "Maheen Sumera Alavi",
@@ -83,7 +83,7 @@ const certs = [
   {
   id: "szabist-merit-scholarship",
   title: "Merit Scholarship 1st Position",
-  certificateLink: "/assets/scholarship.jpg",
+  certificateLink: "/assets/scholarship.jpeg",
   provider: "SZABIST",
   badge: "Academic Excellence Award",
   instructor: "Vice President Academics",
