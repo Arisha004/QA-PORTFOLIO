@@ -1,6 +1,10 @@
 
 # Arisha Mumtaz — QA Portfolio
 
+<p align="center">
+  <img src="assets/qa-banner.png" alt="Arisha Mumtaz QA Portfolio Banner" width="100%" />
+</p>
+
 [![Portfolio Live](https://img.shields.io/badge/Portfolio-Live-green)](https://arishaqaportfolio.netlify.app/)
 
 This is my professional **QA Portfolio**, showcasing my skills, projects, and experience in **quality assurance**, manual testing, test case writing, bug documentation, and introductory automation.
