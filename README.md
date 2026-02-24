@@ -1,5 +1,5 @@
 
-# Arisha Mumtaz — QA Portfolio
+# QA Portfolio
 
 <p align="center">
   <img src="/assets/qa-banner.png" alt="Arisha Mumtaz QA Portfolio Banner" width="100%" />
