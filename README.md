@@ -2,7 +2,7 @@
 # QA Portfolio
 
 <p align="center">
-  <img src="public/assets/qabanner.png" alt="Arisha Mumtaz QA Portfolio Banner" width="100%" />
+  <img src="client/public/assets/qabanner.png" alt="Arisha Mumtaz QA Portfolio Banner" width="100%" />
 </p>
 
 [![Portfolio Live](https://img.shields.io/badge/Portfolio-Live-green)](https://arishaqaportfolio.netlify.app/)
